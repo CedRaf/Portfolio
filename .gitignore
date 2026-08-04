@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 .claude
-ToDos.md
 inspo
 
 # Editor directories and files
