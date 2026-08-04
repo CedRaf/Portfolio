@@ -18,15 +18,19 @@ export function Section({ id, title, children }: SectionProps) {
     <section
       id={id}
       aria-labelledby={headingId}
-      className="border-b border-border px-5 py-14 lg:px-8 lg:py-22"
+      className="band border-b border-border py-20 lg:py-32"
     >
       <Reveal>
-        <h2
-          id={headingId}
-          className="mb-7 text-sm font-medium uppercase tracking-[0.1em] text-accent"
-        >
-          {title}
-        </h2>
+        {/* Eyebrow stays monochrome — the accent is reserved for CTAs and links. */}
+        <div className="mb-10 flex items-center gap-4">
+          <h2
+            id={headingId}
+            className="text-xs font-medium uppercase tracking-[0.18em] text-fg"
+          >
+            {title}
+          </h2>
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
+        </div>
         {children}
       </Reveal>
     </section>
