@@ -52,42 +52,47 @@
     scroll-padding-top: 5rem;
   }
 
-  html {
-    background-color: var(--color-bg);
-  }
-
   /*
-   * Background glows (§9.2). A fixed, viewport-anchored layer rather than a
-   * document-height background: painted on `html` they only appeared at the
-   * very top and bottom of a long page, so most of the scroll had no glow at
-   * all. Fixed means they're always in view.
+   * Background glows (§9.2), anchored to the document rather than the viewport
+   * so they scroll past with the content instead of sitting pinned to the
+   * screen. Spread down the full page height — two glows at the ends left the
+   * whole middle of a long page flat, which is why they read as absent.
    *
-   * Derived from --color-heading via color-mix rather than hardcoded hexes, so
-   * they track the palette. Positions are spread to limit overlap — where two
-   * glows stack the background lifts twice, and that's the spot that decides
+   * Vertical radii are percentages of document height so coverage holds as
+   * content grows; horizontal radii stay in rem so the width is predictable.
+   * Colours come from --color-heading via color-mix rather than hardcoded
+   * hexes, so they track the palette. X positions alternate to limit overlap —
+   * two stacked glows lift the canvas twice, and that spot is what decides
    * whether body text still clears AA.
    */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
+  html {
+    background-color: var(--color-bg);
+    background-repeat: no-repeat;
     background-image:
       radial-gradient(
-        48rem 34rem at 14% 8%,
-        color-mix(in oklab, var(--color-heading) 16%, transparent) 0%,
-        transparent 68%
+        48rem 32% at 14% 3%,
+        color-mix(in oklab, var(--color-heading) 15%, transparent) 0%,
+        transparent 96%
       ),
       radial-gradient(
-        42rem 30rem at 86% 4%,
-        color-mix(in oklab, var(--color-heading) 12%, transparent) 0%,
-        transparent 65%
+        42rem 32% at 86% 26%,
+        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        transparent 96%
       ),
       radial-gradient(
-        46rem 32rem at 50% 100%,
-        color-mix(in oklab, var(--color-heading) 12%, transparent) 0%,
-        transparent 66%
+        46rem 32% at 20% 50%,
+        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        transparent 96%
+      ),
+      radial-gradient(
+        42rem 32% at 82% 74%,
+        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        transparent 96%
+      ),
+      radial-gradient(
+        46rem 32% at 48% 97%,
+        color-mix(in oklab, var(--color-heading) 15%, transparent) 0%,
+        transparent 96%
       );
   }
 
