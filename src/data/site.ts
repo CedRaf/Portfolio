@@ -1,3 +1,6 @@
+import type { ComponentType } from 'react'
+import { GithubIcon, LinkedInIcon } from '../components/Icons'
+
 export type NavItem = {
   label: string
   href: string
@@ -6,6 +9,7 @@ export type NavItem = {
 export type SocialLink = {
   label: string
   href: string
+  icon: ComponentType<{ className?: string }>
 }
 
 export const site = {
@@ -32,6 +36,6 @@ export const nav: NavItem[] = [
 ]
 
 export const socials: SocialLink[] = [
-  { label: 'GitHub', href: 'https://github.com/CedRaf' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/cedric-thomas-rafanan-820a0637a/' },
+  { label: 'GitHub', href: 'https://github.com/CedRaf', icon: GithubIcon },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/cedric-thomas-rafanan-820a0637a/', icon: LinkedInIcon },
 ]
