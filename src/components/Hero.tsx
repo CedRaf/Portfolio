@@ -26,8 +26,8 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="band border-b border-border py-24 lg:py-40"
     >
-      <div className="flex flex-col items-start gap-14 lg:flex-row lg:items-center lg:justify-between lg:gap-20">
-        <div className="flex-1">
+      <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-14 lg:flex-row lg:items-center lg:justify-center lg:gap-24 2xl:gap-48">
+        <div className="flex-1 lg:max-w-[54rem]">
           <motion.p
             {...rise(0)}
             className="mb-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em]"
@@ -39,8 +39,6 @@ export function Hero() {
           <motion.h1
             {...rise(0.08)}
             id="hero-heading"
-            /* Serif display wants air: negative tracking and 1.05 leading read
-               as cramped at this size, which flat sans headings tolerate. */
             className="font-display text-5xl leading-[1.12] tracking-[0.005em] text-heading sm:text-6xl lg:text-8xl"
           >
             {site.shortName}
