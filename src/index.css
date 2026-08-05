@@ -1,74 +1,116 @@
 @import 'tailwindcss';
 
 /*
- * Design tokens. Tailwind v4 generates utilities from these:
- *   --color-accent  ->  bg-accent / text-accent / border-accent
- *   --font-mono     ->  font-mono
- *   --shadow-card   ->  shadow-card
- * Opacity modifiers work on all of them, e.g. bg-accent/10, border-accent/50.
+ * DM Serif Display carries the display headings (§9.2).
+ * Drop `DMSerifDisplay-Regular.woff2` into `public/fonts/` and it takes over;
+ * until then the stack falls through to the system serifs below. Those are
+ * ordered widest-first — Palatino and Iowan are more open than Georgia, which
+ * matters because the fallback is what renders until the file lands.
  */
-@theme {
-  --color-bg: #ffffff;
-  --color-fg: #6b6375;
-  --color-heading: #08060d;
-  --color-border: #e5e4e7;
-  --color-muted: #f4f3ec;
-  /* Darkened from #aa3bff, which fell to 4.39:1 on white — just under WCAG AA. */
-  --color-accent: #9b2df0;
-
-  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, Consolas, monospace;
-
-  --shadow-card:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+@font-face {
+  font-family: 'DM Serif Display';
+  src: url('/fonts/DMSerifDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /*
- * Dark mode swaps the token values, so every utility above follows automatically.
- * Any new color MUST be added here as well or dark mode silently breaks.
+ * Design tokens. Tailwind v4 generates utilities from these:
+ *   --color-accent  ->  bg-accent / text-accent / border-accent
+ *   --font-display  ->  font-display
+ *   --shadow-card   ->  shadow-card
+ * Opacity modifiers work too, e.g. bg-accent/10, border-accent/50.
+ *
+ * Dark-only by design (§9). There is no light palette and no theme toggle —
+ * a second scheme would be a change of direction, not an addition.
  */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #16171d;
-    --color-fg: #9ca3af;
-    --color-heading: #f3f4f6;
-    --color-border: #2e303a;
-    --color-muted: #1f2028;
-    --color-accent: #c084fc;
+@theme {
+  --color-bg: #0b0b0d;
+  --color-muted: #151519;
+  --color-border: #26262c;
+  --color-fg: #a1a1ab;
+  --color-heading: #f4f4f5;
+  --color-accent: #e8dcc4;
+  /* Text placed *on* an accent fill. Never use it as a page-level color. */
+  --color-accent-fg: #0b0b0d;
 
-    --shadow-card:
-      0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -2px rgb(0 0 0 / 0.25);
-  }
+  --font-display:
+    'DM Serif Display', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    'Book Antiqua', Georgia, serif;
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  --shadow-card: 0 16px 40px -12px rgb(0 0 0 / 0.7);
 }
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: dark;
     scroll-behavior: smooth;
     /* Keeps anchor targets clear of the sticky header. */
     scroll-padding-top: 5rem;
   }
 
-  body {
+  /*
+   * Background glows (§9.2), anchored to the document rather than the viewport
+   * so they scroll past with the content instead of sitting pinned to the
+   * screen. Spread down the full page height — two glows at the ends left the
+   * whole middle of a long page flat, which is why they read as absent.
+   *
+   * Vertical radii are percentages of document height so coverage holds as
+   * content grows; horizontal radii stay in rem so the width is predictable.
+   * Colours come from --color-heading via color-mix rather than hardcoded
+   * hexes, so they track the palette. X positions alternate to limit overlap —
+   * two stacked glows lift the canvas twice, and that spot is what decides
+   * whether body text still clears AA.
+   */
+  html {
     background-color: var(--color-bg);
+    background-repeat: no-repeat;
+    background-image:
+      radial-gradient(
+        48rem 32% at 14% 3%,
+        color-mix(in oklab, var(--color-heading) 15%, transparent) 0%,
+        transparent 96%
+      ),
+      radial-gradient(
+        42rem 32% at 86% 26%,
+        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        transparent 96%
+      ),
+      radial-gradient(
+        46rem 32% at 20% 50%,
+        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        transparent 96%
+      ),
+      radial-gradient(
+        42rem 32% at 82% 74%,
+        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        transparent 96%
+      ),
+      radial-gradient(
+        46rem 32% at 48% 97%,
+        color-mix(in oklab, var(--color-heading) 15%, transparent) 0%,
+        transparent 96%
+      );
+  }
+
+  body {
+    background-color: transparent;
     color: var(--color-fg);
     font-family: var(--font-sans);
-    letter-spacing: 0.18px;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Full-bleed shell (§9.3): the container never constrains, the text does. */
   #root {
-    width: 1126px;
-    max-width: 100%;
     min-height: 100svh;
-    margin-inline: auto;
     display: flex;
     flex-direction: column;
-    border-inline: 1px solid var(--color-border);
-    box-sizing: border-box;
   }
 
   /* Single visible focus treatment for every interactive element. */
@@ -101,6 +143,45 @@
 
   .skip-link:focus {
     top: 1rem;
+  }
+
+  /*
+   * The uploaded LinkedIn mark is solid black on transparency, so it is
+   * invisible on the near-black canvas (~1.07:1). Using it as a mask paints the
+   * shape in currentColor instead, which matches the GitHub icon and follows
+   * the link's hover colour.
+   */
+  .icon-linkedin {
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask: url('/images/linkedIn.png') center / contain no-repeat;
+    mask: url('/images/linkedIn.png') center / contain no-repeat;
+  }
+
+  /*
+   * Shared horizontal rhythm for every full-bleed band. Padding grows with the
+   * viewport so content never hugs the edge of a wide monitor.
+   */
+  .band {
+    padding-inline: 1.5rem;
+  }
+
+  @media (width >= 40rem) {
+    .band {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .band {
+      padding-inline: 4rem;
+    }
+  }
+
+  @media (width >= 80rem) {
+    .band {
+      padding-inline: 6rem;
+    }
   }
 }
 

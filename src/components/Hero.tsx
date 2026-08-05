@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { Download, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { Button } from './Button'
+import { ResumeDialog } from './ResumeDialog'
 import { site } from '../data/site'
 
 export function Hero() {
@@ -24,50 +25,48 @@ export function Hero() {
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="border-b border-border px-5 py-20 lg:px-8 lg:py-30"
+      className="band border-b border-border py-24 lg:py-40"
     >
-      <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
-        {/* Left column: all your existing text content */}
-        <div className="flex-1">
+      <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-14 lg:flex-row lg:items-center lg:justify-center lg:gap-24 2xl:gap-48">
+        <div className="flex-1 lg:max-w-[54rem]">
           <motion.p
             {...rise(0)}
-            className="mb-3 flex items-center gap-1.5 text-[15px]"
+            className="mb-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em]"
           >
-            <MapPin className="size-4" aria-hidden="true" />
+            <MapPin className="size-3.5" aria-hidden="true" />
             {site.location}
           </motion.p>
 
           <motion.h1
             {...rise(0.08)}
             id="hero-heading"
-            className="mb-4 text-4xl font-medium tracking-tight text-heading lg:text-6xl"
+            className="font-display text-5xl leading-[1.12] tracking-[0.005em] text-heading sm:text-6xl lg:text-8xl"
           >
             {site.shortName}
           </motion.h1>
 
           <motion.p
             {...rise(0.16)}
-            className="max-w-[54ch] text-lg leading-relaxed lg:text-xl"
+            className="mt-7 max-w-[52ch] text-lg leading-relaxed lg:text-xl"
           >
             {site.tagline}
           </motion.p>
 
-          <motion.div {...rise(0.24)} className="mt-8 flex flex-wrap gap-3">
+          <motion.div {...rise(0.24)} className="mt-10 flex flex-wrap gap-3">
             <Button href="#projects" variant="primary">
               View projects
             </Button>
-            <Button href={site.resumeUrl} download type="application/pdf">
-              <Download className="size-4" aria-hidden="true" />
-              Download resume
-            </Button>
+            <ResumeDialog />
           </motion.div>
         </div>
 
-        <motion.div {...rise(0.1)} className="shrink-0 lg:pr-10">
+        <motion.div {...rise(0.1)} className="shrink-0">
           <img
             src="/images/profilepic.jpg"
             alt={`Portrait of ${site.shortName}`}
-            className="size-50 rounded-full object-cover lg:size-70"
+            width="288"
+            height="288"
+            className="size-52 rounded-full border border-border object-cover lg:size-72"
           />
         </motion.div>
       </div>
