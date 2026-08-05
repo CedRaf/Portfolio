@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { Download, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { Button } from './Button'
+import { ResumeDialog } from './ResumeDialog'
 import { site } from '../data/site'
 
 export function Hero() {
@@ -55,10 +56,7 @@ export function Hero() {
             <Button href="#projects" variant="primary">
               View projects
             </Button>
-            <Button href={site.resumeUrl} download type="application/pdf">
-              <Download className="size-4" aria-hidden="true" />
-              Download resume
-            </Button>
+            <ResumeDialog />
           </motion.div>
         </div>
 
