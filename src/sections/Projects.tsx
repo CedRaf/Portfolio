@@ -25,7 +25,7 @@ export function Projects() {
               delay: reduceMotion ? 0 : index * 0.06,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="flex flex-col gap-4 rounded-xl border border-border bg-muted p-8 transition-colors duration-200 hover:border-heading/30"
+            className="flex flex-col gap-4 rounded-xl border border-border bg-muted p-8 transition-colors duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-1"
           >
             <div className="flex flex-col gap-2">
               <h3 className="font-display text-2xl text-heading">
