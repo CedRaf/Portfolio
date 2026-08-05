@@ -1,4 +1,4 @@
-import { Mail } from 'lucide-react'
+import { Download, Mail } from 'lucide-react'
 import { site, socials } from '../data/site'
 
 const link =
@@ -32,6 +32,13 @@ export function Footer() {
           <a href={`mailto:${site.email}`} className={link}>
             <Mail className="size-4" aria-hidden="true" />
             Email
+          </a>
+        </li>
+        {/* The hero's button now opens a viewer, so this is the direct download. */}
+        <li>
+          <a href={site.resumeUrl} download className={link}>
+            <Download className="size-4" aria-hidden="true" />
+            Resume
           </a>
         </li>
       </ul>
