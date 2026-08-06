@@ -32,8 +32,8 @@ export const roles: Role[] = [
     period: 'September 2025 – March 2026',
     highlights: [
       'Built an internal exit clearance system using React (TypeScript) and C# that automated manual employee offboarding, reducing process time by ~25%.',
-      'Implemented token-based authentication, conditional rendering, and email notifications to ensure secure access and streamlined communication.',
-      'Presented the system to stakeholders and supported internal deployment, incorporating feedback from ~15 employees to refine features before company-wide rollout.',
+      'Engineered JWT-based authentication with role-based conditional rendering, giving HR admins and employees distinct access levels and eliminating unauthorized access to sensitive offboarding data.',
+      'Presented system to stakeholders and worked closely with QA and ~15 employee testers to refine features, incorporating feedback ahead of company-wide rollout.',
     ],
   },
 ]
@@ -70,7 +70,7 @@ export const skills: SkillGroup[] = [
   },
   {
     label: 'Databases & Tools',
-    items: ['MySQL', 'Milvus', 'Neo4j', 'Git & GitHub', 'Postman', 'MySQL Workbench', 'Claude Code', 'Github Copilot'],
+    items: ['MySQL', 'Milvus', 'Neo4j', 'Git & GitHub', 'Postman', 'MySQL Workbench', 'Claude Code', 'GitHub Copilot', 'Azure DevOps'],
   },
   {
     label: 'Spoken',
