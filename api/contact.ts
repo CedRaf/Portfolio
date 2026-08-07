@@ -1,6 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { isRateLimited, getClientIp } from './_helpers/rateLimiter';
-import type { ContactFormBody, ResendAttachment } from './_helpers/types';
+// The `.js` extensions are required, not optional: package.json sets
+// "type": "module", so these run as ESM on Vercel, and Node's ESM loader does
+// not resolve extensionless relative paths. It's `.js` even though the source
+// is `.ts` — the extension refers to the emitted file.
+import { isRateLimited, getClientIp } from './_helpers/rateLimiter.js';
+import type { ContactFormBody, ResendAttachment } from './_helpers/types.js';
 
 const MAX_MESSAGE_LENGTH = 5000;
 const MAX_NAME_LENGTH = 100;

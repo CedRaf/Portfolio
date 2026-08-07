@@ -2,8 +2,12 @@
   "compilerOptions": {
     "target": "ES2023",
     "lib": ["ES2023"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    // NodeNext, not bundler: these files run as ESM directly under Node on
+    // Vercel, not through a bundler. Bundler resolution permits extensionless
+    // relative imports, which type-check clean and then fail at runtime with
+    // ERR_MODULE_NOT_FOUND. NodeNext makes the compiler require the extension.
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "types": ["node"],
 
     "strict": true,
