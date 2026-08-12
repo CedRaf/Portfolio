@@ -31,7 +31,7 @@ export const roles: Role[] = [
     title: 'Software Developer Intern',
     period: 'September 2025 – March 2026',
     highlights: [
-      'Built an internal exit clearance system using React (TypeScript) and C# that automated manual employee offboarding, reducing process time by ~25%.',
+      'Built an internal exit clearance system using React (TypeScript) and C# that automated manual employee offboarding, replacing a manual paper-based routing process across HR and department approvers.',
       'Engineered JWT-based authentication with role-based conditional rendering, giving HR admins and employees distinct access levels and eliminating unauthorized access to sensitive offboarding data.',
       'Presented system to stakeholders and worked closely with QA and ~15 employee testers to refine features, incorporating feedback ahead of company-wide rollout.',
     ],
@@ -45,7 +45,7 @@ export const education: Education[] = [
     location: 'Talamban, Cebu',
     period: 'July 2026',
     details: [
-      'Cum Laude — GPA 1.55',
+      'Cum Laude — GPA 1.55 / 1.0 Highest',
       "Dean's List 2022–2026",
       'Coursework: Data Structures, Algorithms, Software Engineering, Web & App Development',
     ],
