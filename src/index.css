@@ -1,21 +1,6 @@
 @import 'tailwindcss';
 
 /*
- * DM Serif Display carries the display headings (§9.2).
- * Drop `DMSerifDisplay-Regular.woff2` into `public/fonts/` and it takes over;
- * until then the stack falls through to the system serifs below. Those are
- * ordered widest-first — Palatino and Iowan are more open than Georgia, which
- * matters because the fallback is what renders until the file lands.
- */
-@font-face {
-  font-family: 'DM Serif Display';
-  src: url('/fonts/DMSerifDisplay-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/*
  * Design tokens. Tailwind v4 generates utilities from these:
  *   --color-accent  ->  bg-accent / text-accent / border-accent
  *   --font-display  ->  font-display
@@ -35,9 +20,20 @@
   /* Text placed *on* an accent fill. Never use it as a page-level color. */
   --color-accent-fg: #0b0b0d;
 
+  /*
+   * A system old-style serif is the display voice — a decision, not a fallback.
+   * Ordered by platform: Iowan on macOS, Palatino Linotype on Windows, Palatino
+   * on iOS, Georgia as the broad net, generic serif last. All are humanist
+   * old-styles with similar warmth, so the character holds across platforms even
+   * though the exact face doesn't.
+   *
+   * The tradeoff, stated plainly: the display face differs per OS, and on
+   * Android/Linux it lands on whatever the platform serif is. Self-hosting one
+   * woff2 is the only way to make it identical everywhere.
+   */
   --font-display:
-    'DM Serif Display', 'Iowan Old Style', 'Palatino Linotype', Palatino,
-    'Book Antiqua', Georgia, serif;
+    'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia,
+    serif;
   --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, Consolas, monospace;
 

@@ -20,7 +20,7 @@ export function About() {
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-border bg-muted px-3 py-1 font-mono text-[13px] text-heading transition-[border-color,transform] duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-0.5"
+                    className="rounded-full border border-border bg-muted px-3 py-1 font-mono text-[13px] text-heading"
                   >
                     {item}
                   </li>

@@ -22,7 +22,7 @@ export const site = {
   resumeUrl: '/resume.pdf',
 
   tagline:
-    'Hi I\'m Ced!, a Computer Science graduate with hands-on experience in full-stack development and software automation.',
+    "Hi, I'm Ced! A Computer Science graduate with hands-on experience in full-stack development and software automation.",
 
   intro:
     'I build web applications and internal tools that remove manual work. Recently I automated an HR offboarding workflow during a software development internship, and published a hybrid RAG framework for financial data analysis on IEEE Xplore.',
