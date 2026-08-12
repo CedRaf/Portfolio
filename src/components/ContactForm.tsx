@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import type { FormEvent } from 'react'
-import { Send } from 'lucide-react'
+import type { ChangeEvent, FormEvent } from 'react'
+import { CheckCircle2, Send } from 'lucide-react'
 import { buttonBase, buttonVariants } from './buttonStyles'
 
 const field = 'flex flex-col gap-2'
@@ -31,8 +31,19 @@ function fileToBase64(file: File): Promise<string> {
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [attachmentError, setAttachmentError] = useState<string | null>(null)
+  const [sentTo, setSentTo] = useState('')
 
   const sending = status === 'sending'
+
+  function handleAttachmentChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0]
+    setAttachmentError(
+      file && file.size > MAX_ATTACHMENT_BYTES
+        ? `That file is ${(file.size / 1024 / 1024).toFixed(1)} MB. The limit is 3 MB.`
+        : null,
+    )
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -75,6 +86,7 @@ export function ContactForm() {
         throw new Error(payload?.error ?? 'Something went wrong. Please try again.')
       }
 
+      setSentTo(String(data.get('email') ?? ''))
       form.reset()
       setStatus('success')
     } catch (caught) {
@@ -85,6 +97,32 @@ export function ContactForm() {
       )
       setStatus('error')
     }
+  }
+
+  if (status === 'success') {
+    return (
+      <div
+        role="status"
+        className="mx-auto mt-14 flex w-full max-w-[44rem] flex-col items-center gap-3 rounded-xl border border-heading/40 bg-muted px-8 py-12 text-center"
+      >
+        <CheckCircle2 className="size-7 text-accent" aria-hidden="true" />
+        <p className="font-display text-2xl text-heading">Message sent</p>
+        <p className="max-w-[48ch] leading-relaxed">
+          Thanks for reaching out{sentTo ? ' — ' : '.'}
+          {sentTo && <span className="text-heading">I&rsquo;ll reply to {sentTo}.</span>}
+        </p>
+        <button
+          type="button"
+          className={`${buttonBase} ${buttonVariants.default} mt-4`}
+          onClick={() => {
+            setSentTo('')
+            setStatus('idle')
+          }}
+        >
+          Send another
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -127,7 +165,7 @@ export function ContactForm() {
 
       <div className={`${field} mt-6`}>
         <label className={label} htmlFor="contact-subject">
-          Subject
+          Subject <span className="normal-case tracking-normal">(optional)</span>
         </label>
         <input
           className={control}
@@ -156,7 +194,7 @@ export function ContactForm() {
 
       <div className={`${field} mt-6`}>
         <label className={label} htmlFor="contact-attachment">
-          Attachment
+          Attachment <span className="normal-case tracking-normal">(optional)</span>
         </label>
         <input
           className={`${control} cursor-pointer file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-border file:px-4 file:py-1.5 file:text-sm file:text-heading`}
@@ -165,15 +203,25 @@ export function ContactForm() {
           type="file"
           accept=".pdf,.png,.jpg,.jpeg,.webp"
           aria-describedby="contact-attachment-hint"
+          aria-invalid={attachmentError ? true : undefined}
+          onChange={handleAttachmentChange}
           disabled={sending}
         />
-        <p className={hint} id="contact-attachment-hint">
-          Optional. PDF, PNG, JPEG or WebP, up to 3&nbsp;MB.
-        </p>
+        {attachmentError ? (
+          <p className="text-xs text-heading" role="alert">
+            {attachmentError}
+          </p>
+        ) : (
+          <p className={hint} id="contact-attachment-hint">
+            PDF, PNG, JPEG or WebP, up to 3&nbsp;MB.
+          </p>
+        )}
       </div>
 
-      {/*Honeypot*/}
-      <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
+      >
         <label htmlFor="contact-website">Leave this field empty</label>
         <input
           id="contact-website"
@@ -183,21 +231,30 @@ export function ContactForm() {
           autoComplete="off"
         />
       </div>
+      
+      {status === 'error' && error && (
+        <p
+          role="alert"
+          className="mt-6 rounded-lg border border-heading/40 bg-muted px-4 py-3 text-heading"
+        >
+          {error}
+        </p>
+      )}
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <button
           className={`${buttonBase} ${buttonVariants.primary} disabled:opacity-60`}
           type="submit"
-          disabled={sending}
+          disabled={sending || attachmentError !== null}
         >
           <Send className="size-4" aria-hidden="true" />
           {sending ? 'Sending…' : 'Send message'}
         </button>
-
-        <p className={hint} role="status" aria-live="polite">
-          {status === 'success' && 'Thanks — your message is on its way.'}
-          {status === 'error' && error}
-        </p>
+        {sending && (
+          <p className={hint} role="status">
+            Sending your message…
+          </p>
+        )}
       </div>
     </form>
   )
