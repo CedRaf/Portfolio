@@ -22,8 +22,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  /* py keeps the tap target at/above the 24px AA minimum. */
-                  className="inline-block py-1.5 no-underline transition-colors hover:text-heading"
+                  className="inline-block py-3 no-underline transition-colors hover:text-heading lg:py-1.5"
                 >
                   {item.label}
                 </a>

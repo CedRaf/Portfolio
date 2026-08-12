@@ -2,7 +2,7 @@ import { Download, Mail } from 'lucide-react'
 import { site, socials } from '../data/site'
 
 const link =
-  'inline-flex items-center gap-2 py-1 no-underline transition-colors hover:text-heading'
+  'inline-flex items-center gap-2 py-3 no-underline transition-colors hover:text-heading lg:py-1'
 
 export function Footer() {
   return (
@@ -11,7 +11,7 @@ export function Footer() {
         © {new Date().getFullYear()} {site.shortName}
       </p>
 
-      <ul className="flex list-none items-center gap-6 p-0">
+      <ul className="flex list-none flex-wrap items-center gap-x-6 gap-y-1 p-0">
         {socials.map((social) => {
           const Icon = social.icon
           return (
@@ -38,7 +38,7 @@ export function Footer() {
         <li>
           <a href={site.resumeUrl} download className={link}>
             <Download className="size-4" aria-hidden="true" />
-            Resume
+            Download resume
           </a>
         </li>
       </ul>
