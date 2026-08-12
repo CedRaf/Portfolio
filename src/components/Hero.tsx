@@ -29,16 +29,8 @@ export function Hero() {
     >
       <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-14 lg:flex-row lg:items-center lg:justify-center lg:gap-24 2xl:gap-48">
         <div className="flex-1 lg:max-w-[54rem]">
-          <motion.p
-            {...rise(0)}
-            className="mb-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em]"
-          >
-            <MapPin className="size-3.5" aria-hidden="true" />
-            {site.location}
-          </motion.p>
-
           <motion.h1
-            {...rise(0.08)}
+            {...rise(0)}
             id="hero-heading"
             className="font-display text-5xl leading-[1.12] tracking-[0.005em] text-heading sm:text-6xl lg:text-8xl"
           >
@@ -46,8 +38,22 @@ export function Hero() {
           </motion.h1>
 
           <motion.p
+            {...rise(0.08)}
+            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-lg text-heading"
+          >
+            {site.role}
+            <span className="text-fg" aria-hidden="true">
+              ·
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-base text-fg">
+              <MapPin className="size-4" aria-hidden="true" />
+              {site.location}
+            </span>
+          </motion.p>
+
+          <motion.p
             {...rise(0.16)}
-            className="mt-7 max-w-[52ch] text-lg leading-relaxed lg:text-xl"
+            className="mt-6 max-w-[52ch] text-lg leading-relaxed lg:text-xl"
           >
             {site.tagline}
           </motion.p>

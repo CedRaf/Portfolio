@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { Reveal } from './Reveal'
 
 type SectionProps = {
   id: string
@@ -26,21 +25,21 @@ export function Section({
       aria-labelledby={headingId}
       className="band border-b border-border py-20 lg:py-32"
     >
-      <Reveal className="mx-auto w-full max-w-[110rem]">
-        <div className="mb-10 flex items-center gap-4">
+      <div className="mx-auto w-full max-w-[110rem]">
+        <div className="mb-10 flex items-center gap-5">
           {align === 'center' && (
             <span className="h-px flex-1 bg-border" aria-hidden="true" />
           )}
           <h2
             id={headingId}
-            className="text-xs font-medium uppercase tracking-[0.18em] text-fg"
+            className="font-display text-3xl leading-tight text-heading lg:text-4xl"
           >
             {title}
           </h2>
           <span className="h-px flex-1 bg-border" aria-hidden="true" />
         </div>
         {children}
-      </Reveal>
+      </div>
     </section>
   )
 }

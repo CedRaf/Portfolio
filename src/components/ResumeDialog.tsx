@@ -5,7 +5,7 @@ import { buttonBase, buttonVariants } from './buttonStyles'
 import { site } from '../data/site'
 
 const action =
-  'inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm no-underline transition-colors hover:text-heading'
+  'inline-flex items-center gap-1.5 rounded-md px-3 py-3 text-sm no-underline transition-colors hover:text-heading lg:py-1.5'
 
 export function ResumeDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null)
