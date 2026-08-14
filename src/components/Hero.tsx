@@ -27,7 +27,28 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="band border-b border-border py-24 lg:py-40"
     >
-      <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-14 lg:flex-row lg:items-center lg:justify-center lg:gap-24 2xl:gap-48">
+      <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-center lg:gap-24 2xl:gap-48">
+        {/*
+          Portrait is first in the DOM so it leads on mobile with no order
+          override — visual order and reading order stay identical there, which
+          is the case that matters for screen readers. `lg:order-last` moves it
+          back to the right on desktop, where leading with it pushed the h1 384px
+          off the left edge every section below it shares.
+
+          Smaller on mobile than it used to be: at 208px, leading with the
+          portrait pushed both CTAs to 864px on an 812px viewport. This keeps
+          them visible.
+        */}
+        <motion.div {...rise(0)} className="shrink-0 lg:order-last">
+          <img
+            src="/images/profilepic.jpg"
+            alt={`Portrait of ${site.shortName}`}
+            width="288"
+            height="288"
+            className="size-36 rounded-full border border-border object-cover sm:size-44 lg:size-72"
+          />
+        </motion.div>
+
         <div className="flex-1 lg:max-w-[54rem]">
           <motion.h1
             {...rise(0)}
@@ -65,16 +86,6 @@ export function Hero() {
             <ResumeDialog />
           </motion.div>
         </div>
-
-        <motion.div {...rise(0.1)} className="shrink-0">
-          <img
-            src="/images/profilepic.jpg"
-            alt={`Portrait of ${site.shortName}`}
-            width="288"
-            height="288"
-            className="size-52 rounded-full border border-border object-cover lg:size-72"
-          />
-        </motion.div>
       </div>
     </section>
   )
