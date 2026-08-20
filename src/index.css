@@ -11,12 +11,12 @@
  * a second scheme would be a change of direction, not an addition.
  */
 @theme {
-  --color-bg: #0b0b0d;
-  --color-muted: #151519;
+  --color-bg: ##1A1A1A;
+  --color-muted: #343434;
   --color-border: #26262c;
   --color-fg: #a1a1ab;
   --color-heading: #f4f4f5;
-  --color-accent: #e8dcc4;
+  --color-accent: #ffe45b;
   /* Text placed *on* an accent fill. Never use it as a page-level color. */
   --color-accent-fg: #0b0b0d;
 

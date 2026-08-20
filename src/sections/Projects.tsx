@@ -1,16 +1,17 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { Section } from '../components/Section'
+import { Chip } from '../components/Chip'
 import { projects } from '../data/projects'
 import type { Project } from '../data/projects'
 
 const cardLink =
-  'inline-flex w-fit items-center gap-1.5 border-b border-transparent pb-0.5 text-[15px] text-accent no-underline transition-colors hover:border-accent'
+  'inline-flex w-fit items-center gap-1.5 text-[15px] text-heading no-underline underline-offset-4 transition-colors hover:text-accent hover:underline'
 
 const card =
-  'flex flex-col gap-4 rounded-xl border border-border bg-muted p-8 transition-[border-color,transform] duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-1'
+  'flex flex-col gap-4 rounded-2xl border border-border bg-muted p-7 transition-[border-color,transform] duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-1'
 
-const label = 'text-xs font-medium uppercase tracking-[0.18em] text-fg'
+const groupHeading = 'mb-6 text-2xl text-heading lg:text-[28px]'
 
 function ProjectCard({
   project,
@@ -33,36 +34,31 @@ function ProjectCard({
       }}
       className={card}
     >
-      <div className="flex flex-col gap-2">
-        <h3 className="font-display text-2xl text-heading">{project.title}</h3>
-        <p className="font-mono text-xs uppercase tracking-[0.12em] whitespace-nowrap">
-          {project.period}
-        </p>
-      </div>
+      <h3 className="font-display text-2xl leading-snug text-heading">
+        {project.title}
+      </h3>
+
+      <ul className="flex list-none flex-wrap gap-2 p-0">
+        {project.stack.map((tech) => (
+          <Chip key={tech}>{tech}</Chip>
+        ))}
+      </ul>
 
       <p className="leading-relaxed">{project.description}</p>
 
       {project.highlights && (
-        <ul className="flex list-disc flex-col gap-2 pl-5">
+        <ul className="flex list-none flex-col gap-1.5 p-0">
           {project.highlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
+            <li key={highlight} className="flex gap-2.5">
+              <span aria-hidden="true">·</span>
+              <span>{highlight}</span>
+            </li>
           ))}
         </ul>
       )}
 
-      <ul className="flex list-none flex-wrap gap-2 p-0">
-        {project.stack.map((tech) => (
-          <li
-            key={tech}
-            className="rounded-full border border-border px-3 py-1 font-mono text-[13px] text-heading"
-          >
-            {tech}
-          </li>
-        ))}
-      </ul>
-
       {(project.repoUrl || project.paperUrl) && (
-        <div className="mt-auto flex flex-wrap items-center gap-5 pt-2">
+        <div className="mt-auto flex flex-wrap items-center gap-6 pt-3">
           {project.repoUrl && (
             <a
               href={project.repoUrl}
@@ -104,8 +100,8 @@ export function Projects() {
     <Section id="projects" title="Projects">
       {featured.length > 0 && (
         <>
-          <p className={`${label} mb-5`}>Selected work</p>
-          <ul className="mb-14 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-2">
+          <h3 className={groupHeading}>Selected Work</h3>
+          <ul className="mb-16 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-2">
             {featured.map((project, index) => (
               <ProjectCard
                 key={project.title}
@@ -120,8 +116,8 @@ export function Projects() {
 
       {rest.length > 0 && (
         <>
-          <p className={`${label} mb-5`}>More projects</p>
-          <ul className="grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-2 xl:grid-cols-3">
+          <h3 className={groupHeading}>Other Projects</h3>
+          <ul className="grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 xl:grid-cols-3">
             {rest.map((project, index) => (
               <ProjectCard
                 key={project.title}

@@ -1,43 +1,46 @@
 import type { ReactNode } from 'react'
 
+/**
+ * Either the section renders its own heading from `title`, or it points
+ * `aria-labelledby` at a heading the caller supplies (Contact does this — its
+ * "Let's Connect!" sits inside the accent card, so there is no heading row).
+ */
 type SectionProps = {
   id: string
-  title: string
-  align?: 'left' | 'center'
+  className?: string
   children: ReactNode
-}
+} & (
+  | { title: string; labelledBy?: never }
+  | { title?: never; labelledBy: string }
+)
 
-/**
- * Landmark wrapper for every top-level page section.
- * `aria-labelledby` ties the region to its own heading for screen readers.
- */
 export function Section({
   id,
   title,
-  align = 'left',
+  labelledBy,
+  className = '',
   children,
 }: SectionProps) {
-  const headingId = `${id}-heading`
+  const headingId = title ? `${id}-heading` : labelledBy
 
   return (
     <section
       id={id}
       aria-labelledby={headingId}
-      className="band border-b border-border py-20 lg:py-32"
+      className={`band py-20 lg:py-28 ${className}`}
     >
       <div className="mx-auto w-full max-w-[110rem]">
-        <div className="mb-10 flex items-center gap-5">
-          {align === 'center' && (
+        {title && (
+          <div className="mb-8 flex items-center gap-6">
+            <h2
+              id={headingId}
+              className="font-display text-4xl leading-tight text-accent lg:text-5xl"
+            >
+              {title}
+            </h2>
             <span className="h-px flex-1 bg-border" aria-hidden="true" />
-          )}
-          <h2
-            id={headingId}
-            className="font-display text-3xl leading-tight text-heading lg:text-4xl"
-          >
-            {title}
-          </h2>
-          <span className="h-px flex-1 bg-border" aria-hidden="true" />
-        </div>
+          </div>
+        )}
         {children}
       </div>
     </section>

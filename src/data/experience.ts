@@ -61,7 +61,7 @@ export const education: Education[] = [
 
 export const skills: SkillGroup[] = [
   {
-    label: 'Languages',
+    label: 'Programming Languages',
     items: ['JavaScript', 'TypeScript', 'Python', 'C#', 'C', 'SQL'],
   },
   {
