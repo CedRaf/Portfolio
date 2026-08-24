@@ -1,7 +1,7 @@
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Footer } from './components/Footer'
-import { About } from './sections/About'
+import { FloatingResume } from './components/FloatingResume'
 import { Experience } from './sections/Experience'
 import { Projects } from './sections/Projects'
 import { Contact } from './sections/Contact'
@@ -13,13 +13,14 @@ function App() {
 
       <main id="main" className="grow">
         <Hero />
-        <About />
-        <Experience />
         <Projects />
+        <Experience />
         <Contact />
       </main>
 
       <Footer />
+
+      <FloatingResume />
     </>
   )
 }

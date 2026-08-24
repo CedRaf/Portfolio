@@ -1,13 +1,20 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { MapPin } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { Button } from './Button'
 import { ResumeDialog } from './ResumeDialog'
-import { site } from '../data/site'
+import { GithubIcon, LinkedInIcon } from './Icons'
+import { site, socials, taglineSegments } from '../data/site'
+
+/** GitHub · Email · LinkedIn, in the order the design shows them. */
+const heroLinks = [
+  { label: 'GitHub', href: socials[0].href, icon: GithubIcon },
+  { label: 'Email', href: `mailto:${site.email}`, icon: Mail },
+  { label: 'LinkedIn', href: socials[1].href, icon: LinkedInIcon },
+]
 
 export function Hero() {
   const reduceMotion = useReducedMotion()
 
-  // Above the fold, so this plays on load rather than on scroll.
   const rise = (delay: number) =>
     reduceMotion
       ? {}
@@ -25,61 +32,72 @@ export function Hero() {
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="band border-b border-border py-24 lg:py-40"
+      className="band py-16 sm:py-24 lg:py-36"
     >
-      <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-center lg:gap-24 2xl:gap-48">
-        {/*
-          Portrait is first in the DOM so it leads on mobile with no order
-          override — visual order and reading order stay identical there, which
-          is the case that matters for screen readers. `lg:order-last` moves it
-          back to the right on desktop, where leading with it pushed the h1 384px
-          off the left edge every section below it shares.
-
-          Smaller on mobile than it used to be: at 208px, leading with the
-          portrait pushed both CTAs to 864px on an 812px viewport. This keeps
-          them visible.
-        */}
+      <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-28 2xl:gap-48">
         <motion.div {...rise(0)} className="shrink-0 lg:order-last">
           <img
             src="/images/profilepic.jpg"
             alt={`Portrait of ${site.shortName}`}
-            width="288"
-            height="288"
-            className="size-36 rounded-full border border-border object-cover sm:size-44 lg:size-72"
+            width="320"
+            height="320"
+            className="size-36 rounded-full border border-border object-cover sm:size-44 lg:size-80"
           />
         </motion.div>
 
-        <div className="flex-1 lg:max-w-[54rem]">
+        <div className="flex-1 lg:max-w-[46rem]">
           <motion.h1
             {...rise(0)}
             id="hero-heading"
-            className="font-display text-5xl leading-[1.12] tracking-[0.005em] text-heading sm:text-6xl lg:text-8xl"
+            className="font-display text-5xl leading-[1.12] tracking-[0.005em] text-heading sm:text-6xl lg:text-7xl"
           >
             {site.shortName}
           </motion.h1>
 
-          <motion.p
-            {...rise(0.08)}
-            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-lg text-heading"
-          >
-            {site.role}
-            <span className="text-fg" aria-hidden="true">
-              ·
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-base text-fg">
-              <MapPin className="size-4" aria-hidden="true" />
-              {site.location}
-            </span>
+          <motion.p {...rise(0.08)} className="mt-4 text-lg text-heading">
+            {site.subtitle}
           </motion.p>
 
-          <motion.p
-            {...rise(0.16)}
-            className="mt-6 max-w-[52ch] text-lg leading-relaxed lg:text-xl"
+          <motion.ul
+            {...rise(0.14)}
+            className="mt-5 flex list-none items-center gap-5 p-0"
           >
-            {site.tagline}
+            {heroLinks.map((link) => {
+              const Icon = link.icon
+              const external = link.href.startsWith('http')
+              return (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    {...(external
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                    className="inline-flex items-center justify-center p-2.5 text-accent transition-colors hover:text-heading lg:p-0"
+                  >
+                    <Icon className="size-6" />
+                    <span className="sr-only">{link.label}</span>
+                  </a>
+                </li>
+              )
+            })}
+          </motion.ul>
+
+          <motion.p
+            {...rise(0.2)}
+            className="mt-8 max-w-[52ch] text-lg leading-relaxed"
+          >
+            {taglineSegments.map((segment) =>
+              segment.emphasis ? (
+                <strong key={segment.text} className="font-semibold text-heading">
+                  {segment.text}
+                </strong>
+              ) : (
+                <span key={segment.text}>{segment.text}</span>
+              ),
+            )}
           </motion.p>
 
-          <motion.div {...rise(0.24)} className="mt-10 flex flex-wrap gap-3">
+          <motion.div {...rise(0.28)} className="mt-9 flex flex-wrap gap-3">
             <Button href="#projects" variant="primary">
               View projects
             </Button>

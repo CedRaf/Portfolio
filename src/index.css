@@ -1,6 +1,24 @@
 @import 'tailwindcss';
 
 /*
+ * Instrument Serif carries the display headings. Self-hosted, subset to the
+ * characters this site actually uses (basic latin + the punctuation in the
+ * copy), which took it from a 67 kB .ttf to 18.4 kB. Licence in
+ * public/fonts/OFL.txt.
+ *
+ * Regular only — the family ships no bold, and `font-synthesis: none` below
+ * means a `font-bold` heading would render at regular weight rather than
+ * faux-bolding. Keep display headings at their default weight.
+ */
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
  * Design tokens. Tailwind v4 generates utilities from these:
  *   --color-accent  ->  bg-accent / text-accent / border-accent
  *   --font-display  ->  font-display
@@ -11,29 +29,22 @@
  * a second scheme would be a change of direction, not an addition.
  */
 @theme {
-  --color-bg: #0b0b0d;
-  --color-muted: #151519;
+  --color-bg: #1a1a1a;
+  --color-muted: #343434;
   --color-border: #26262c;
   --color-fg: #a1a1ab;
   --color-heading: #f4f4f5;
-  --color-accent: #e8dcc4;
+  --color-accent: #ffe45b;
   /* Text placed *on* an accent fill. Never use it as a page-level color. */
   --color-accent-fg: #0b0b0d;
 
   /*
-   * A system old-style serif is the display voice — a decision, not a fallback.
-   * Ordered by platform: Iowan on macOS, Palatino Linotype on Windows, Palatino
-   * on iOS, Georgia as the broad net, generic serif last. All are humanist
-   * old-styles with similar warmth, so the character holds across platforms even
-   * though the exact face doesn't.
-   *
-   * The tradeoff, stated plainly: the display face differs per OS, and on
-   * Android/Linux it lands on whatever the platform serif is. Self-hosting one
-   * woff2 is the only way to make it identical everywhere.
+   * Instrument Serif with the old system old-style stack kept behind it — that
+   * is what paints during `font-display: swap` and if the file ever 404s.
    */
   --font-display:
-    'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia,
-    serif;
+    'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    'Book Antiqua', Georgia, serif;
   --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, Consolas, monospace;
 
@@ -62,6 +73,18 @@
    * whether body text still clears AA.
    */
   html {
+    /*
+     * Everything is rem-based, so a 5% bump here scales the whole page — type
+     * and the spacing scale together, which keeps the proportions intact.
+     *
+     * A percentage, not a px value: this multiplies the visitor's own browser
+     * font-size preference instead of overriding it. `font-size: 16.8px` would
+     * silently discard the setting of anyone who has enlarged their default.
+     *
+     * Breakpoints are unaffected — rem inside a media query resolves against
+     * the initial 16px, not this value, so sm:/lg: still fire where they did.
+     */
+    font-size: 105%;
     background-color: var(--color-bg);
     background-repeat: no-repeat;
     background-image:

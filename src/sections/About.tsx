@@ -20,7 +20,7 @@ export function About() {
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-border bg-muted px-3 py-1 font-mono text-[13px] text-heading"
+                    className="rounded-full border border-border bg-muted px-3 py-1 font-mono text-[13.65px] text-heading"
                   >
                     {item}
                   </li>
