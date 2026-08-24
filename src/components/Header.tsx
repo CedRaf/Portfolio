@@ -14,7 +14,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="inline-block py-3 text-[15px] text-heading no-underline transition-colors hover:text-accent lg:py-1.5"
+                  className="inline-block py-3 text-[15.75px] text-heading no-underline transition-colors hover:text-accent lg:py-1.5"
                 >
                   {item.label}
                 </a>

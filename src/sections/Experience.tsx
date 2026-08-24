@@ -3,7 +3,7 @@ import { Chip } from '../components/Chip'
 import { accomplishments, education, roles, skills } from '../data/experience'
 
 const subhead =
-  'mb-8 text-xl text-heading underline decoration-1 underline-offset-[6px] lg:text-[22px]'
+  'mb-8 text-xl text-heading underline decoration-1 underline-offset-[6px] lg:text-[23.1px]'
 const headRow = 'flex flex-wrap items-baseline justify-between gap-3'
 const entryTitle = 'font-display text-2xl text-heading lg:text-3xl'
 const meta = 'text-heading whitespace-nowrap'

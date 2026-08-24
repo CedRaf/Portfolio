@@ -6,12 +6,12 @@ import { projects } from '../data/projects'
 import type { Project } from '../data/projects'
 
 const cardLink =
-  'inline-flex w-fit items-center gap-1.5 text-[15px] text-heading no-underline underline-offset-4 transition-colors hover:text-accent hover:underline'
+  'inline-flex w-fit items-center gap-1.5 text-[15.75px] text-heading no-underline underline-offset-4 transition-colors hover:text-accent hover:underline'
 
 const card =
   'flex flex-col gap-4 rounded-2xl border border-border bg-muted p-7 transition-[border-color,transform] duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-1'
 
-const groupHeading = 'mb-6 text-2xl text-heading lg:text-[28px]'
+const groupHeading = 'mb-6 text-2xl text-heading lg:text-[29.4px]'
 
 function ProjectCard({
   project,

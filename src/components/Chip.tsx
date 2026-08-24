@@ -6,7 +6,7 @@ import type { ReactNode } from 'react'
  */
 export function Chip({ children }: { children: ReactNode }) {
   return (
-    <li className="rounded-full border border-accent/70 px-3 py-1 font-mono text-[13px] leading-5 text-accent">
+    <li className="rounded-full border border-accent/70 px-3 py-1 font-mono text-[13.65px] leading-5 text-accent">
       {children}
     </li>
   )
