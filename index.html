@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
 
+    <!-- Preloaded: the display face paints the h1, so discovering it via the
+         stylesheet costs a round trip on first view. crossorigin is required
+         even same-origin — fonts are always fetched in CORS mode. -->
+    <link
+      rel="preload"
+      href="/fonts/InstrumentSerif-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <title>Cedric Rafanan — Software Developer</title>
     <meta
       name="description"
