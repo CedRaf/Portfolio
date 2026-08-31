@@ -1,9 +1,18 @@
+/**
+ * A bullet is plain text, unless it carries a measured result — then it is
+ * split so the figure itself can be animated. Splitting beats parsing a number
+ * back out of a sentence.
+ */
+export type Highlight =
+  | string
+  | { prefix: string; value: number; suffix: string }
+
 export type Project = {
   title: string
   period: string
   stack: string[]
   description: string
-  highlights?: string[]
+  highlights?: Highlight[]
   repoUrl?: string
   paperUrl?: string
   featured?: boolean
@@ -17,7 +26,11 @@ export const projects: Project[] = [
     description:
       'Undergraduate thesis. A hybrid RAG framework for financial data analysis that combines graph and vector-based retrieval with optimized preprocessing.',
     highlights: [
-      'Boosted retrieval performance by ~12% over baseline methods',
+      {
+        prefix: 'Boosted retrieval performance by ~',
+        value: 12,
+        suffix: '% over baseline methods',
+      },
       'Official paper published on IEEE Xplore',
     ],
     repoUrl: 'https://github.com/Shabimbawa/RAG_Framework',

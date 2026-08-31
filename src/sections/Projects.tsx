@@ -1,15 +1,21 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { Section } from '../components/Section'
+import { AnimatedNumber } from '../components/AnimatedNumber'
 import { Chip } from '../components/Chip'
+import { Spotlight } from '../components/Spotlight'
 import { projects } from '../data/projects'
 import type { Project } from '../data/projects'
 
 const cardLink =
   'inline-flex w-fit items-center gap-1.5 text-[15.75px] text-heading no-underline underline-offset-4 transition-colors hover:text-accent hover:underline'
 
+/**
+ * `isolate` + `overflow-hidden` give the Spotlight a stacking context to sit
+ * behind the card's text and a boundary to be clipped by.
+ */
 const card =
-  'flex flex-col gap-4 rounded-2xl border border-border bg-muted p-7 transition-[border-color,transform] duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-1'
+  'relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-muted p-7 transition-[border-color,transform] duration-200 hover:border-heading/40 motion-safe:hover:-translate-y-1'
 
 const groupHeading = 'mb-6 text-2xl text-heading lg:text-[29.4px]'
 
@@ -34,6 +40,8 @@ function ProjectCard({
       }}
       className={card}
     >
+      <Spotlight />
+
       <h3 className="font-display text-2xl leading-snug text-heading">
         {project.title}
       </h3>
@@ -49,9 +57,20 @@ function ProjectCard({
       {project.highlights && (
         <ul className="flex list-none flex-col gap-1.5 p-0">
           {project.highlights.map((highlight) => (
-            <li key={highlight} className="flex gap-2.5">
+            <li
+              key={typeof highlight === 'string' ? highlight : highlight.prefix}
+              className="flex gap-2.5"
+            >
               <span aria-hidden="true">·</span>
-              <span>{highlight}</span>
+              {typeof highlight === 'string' ? (
+                <span>{highlight}</span>
+              ) : (
+                <span>
+                  {highlight.prefix}
+                  <AnimatedNumber value={highlight.value} />
+                  {highlight.suffix}
+                </span>
+              )}
             </li>
           ))}
         </ul>
