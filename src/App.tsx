@@ -1,3 +1,4 @@
+import { MotionConfig } from 'motion/react'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Footer } from './components/Footer'
@@ -8,7 +9,7 @@ import { Contact } from './sections/Contact'
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Header />
 
       <main id="main" className="grow">
@@ -21,7 +22,7 @@ function App() {
       <Footer />
 
       <FloatingResume />
-    </>
+    </MotionConfig>
   )
 }
 
