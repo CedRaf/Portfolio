@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { Mail } from 'lucide-react'
 import { Button } from './Button'
 import { ResumeDialog } from './ResumeDialog'
+import { TextResolve } from './TextResolve'
 import { GithubIcon, LinkedInIcon } from './Icons'
 import { site, socials, taglineSegments } from '../data/site'
 
@@ -15,18 +16,22 @@ const heroLinks = [
 export function Hero() {
   const reduceMotion = useReducedMotion()
 
-  const rise = (delay: number) =>
-    reduceMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 18 },
-          animate: { opacity: 1, y: 0 },
-          transition: {
-            duration: 0.6,
-            delay,
-            ease: [0.22, 1, 0.36, 1] as const,
-          },
-        }
+  /**
+   * Everything below the name arrives as one group rather than as five
+   * separately delayed rises. The old ladder finished at ~880ms, which is a
+   * long time to hold the primary CTA back for no meaning.
+   */
+  const group = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 14 },
+        animate: { opacity: 1, y: 0 },
+        transition: {
+          duration: 0.45,
+          delay: 0.22,
+          ease: [0.16, 1, 0.3, 1] as const,
+        },
+      }
 
   return (
     <section
@@ -35,7 +40,20 @@ export function Hero() {
       className="band py-16 sm:py-24 lg:py-36"
     >
       <div className="mx-auto flex w-full max-w-[110rem] flex-col items-start gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-28 2xl:gap-48">
-        <motion.div {...rise(0)} className="shrink-0 lg:order-last">
+        <motion.div
+          initial={
+            reduceMotion
+              ? false
+              : {
+                  opacity: 0,
+                  scale: 1.06,
+                  clipPath: 'circle(30% at 50% 50%)',
+                }
+          }
+          animate={{ opacity: 1, scale: 1, clipPath: 'circle(75% at 50% 50%)' }}
+          transition={{ duration: 0.85, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className="shrink-0 lg:order-last"
+        >
           <img
             src="/images/profilepic.jpg"
             alt={`Portrait of ${site.shortName}`}
@@ -46,62 +64,59 @@ export function Hero() {
         </motion.div>
 
         <div className="flex-1 lg:max-w-[46rem]">
-          <motion.h1
-            {...rise(0)}
+          <TextResolve
+            as="h1"
             id="hero-heading"
+            text={site.shortName}
+            delay={0.08}
             className="font-display text-5xl leading-[1.12] tracking-[0.005em] text-heading sm:text-6xl lg:text-7xl"
-          >
-            {site.shortName}
-          </motion.h1>
+          />
 
-          <motion.p {...rise(0.08)} className="mt-4 text-lg text-heading">
-            {site.subtitle}
-          </motion.p>
+          <motion.div {...group}>
+            <p className="mt-4 text-lg text-heading">{site.subtitle}</p>
 
-          <motion.ul
-            {...rise(0.14)}
-            className="mt-5 flex list-none items-center gap-5 p-0"
-          >
-            {heroLinks.map((link) => {
-              const Icon = link.icon
-              const external = link.href.startsWith('http')
-              return (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    {...(external
-                      ? { target: '_blank', rel: 'noopener noreferrer' }
-                      : {})}
-                    className="inline-flex items-center justify-center p-2.5 text-accent transition-colors hover:text-heading lg:p-0"
+            <ul className="mt-5 flex list-none items-center gap-5 p-0">
+              {heroLinks.map((link) => {
+                const Icon = link.icon
+                const external = link.href.startsWith('http')
+                return (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      {...(external
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                      className="inline-flex items-center justify-center p-2.5 text-accent transition-[color,transform] duration-200 hover:text-heading motion-safe:hover:-translate-y-0.5 lg:p-0"
+                    >
+                      <Icon className="size-6" />
+                      <span className="sr-only">{link.label}</span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+
+            <p className="mt-8 max-w-[52ch] text-lg leading-relaxed">
+              {taglineSegments.map((segment) =>
+                segment.emphasis ? (
+                  <strong
+                    key={segment.text}
+                    className="font-semibold text-heading"
                   >
-                    <Icon className="size-6" />
-                    <span className="sr-only">{link.label}</span>
-                  </a>
-                </li>
-              )
-            })}
-          </motion.ul>
+                    {segment.text}
+                  </strong>
+                ) : (
+                  <span key={segment.text}>{segment.text}</span>
+                ),
+              )}
+            </p>
 
-          <motion.p
-            {...rise(0.2)}
-            className="mt-8 max-w-[52ch] text-lg leading-relaxed"
-          >
-            {taglineSegments.map((segment) =>
-              segment.emphasis ? (
-                <strong key={segment.text} className="font-semibold text-heading">
-                  {segment.text}
-                </strong>
-              ) : (
-                <span key={segment.text}>{segment.text}</span>
-              ),
-            )}
-          </motion.p>
-
-          <motion.div {...rise(0.28)} className="mt-9 flex flex-wrap gap-3">
-            <Button href="#projects" variant="primary">
-              View projects
-            </Button>
-            <ResumeDialog />
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href="#projects" variant="primary">
+                View projects
+              </Button>
+              <ResumeDialog />
+            </div>
           </motion.div>
         </div>
       </div>
