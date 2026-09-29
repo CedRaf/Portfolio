@@ -47,7 +47,7 @@ export function Header() {
   })
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-[#202020]/100 backdrop-blur-lg">
+    <header className="sticky top-0 z-20 border-b border-border bg-bg/85 backdrop-blur-lg">
       <a href="#main" className="skip-link">
         Skip to content
       </a>

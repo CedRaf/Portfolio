@@ -67,7 +67,10 @@ function ProjectCard({
               ) : (
                 <span>
                   {highlight.prefix}
-                  <AnimatedNumber value={highlight.value} />
+                  <AnimatedNumber
+                    value={highlight.value}
+                    from={highlight.from}
+                  />
                   {highlight.suffix}
                 </span>
               )}
