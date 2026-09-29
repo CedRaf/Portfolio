@@ -71,6 +71,10 @@
    * hexes, so they track the palette. X positions alternate to limit overlap —
    * two stacked glows lift the canvas twice, and that spot is what decides
    * whether body text still clears AA.
+   *
+   * 10% each is measured, not picked: narrow viewports overlap the most (the
+   * rem radii are wide relative to the screen), and at 375px the worst point
+   * holds body text at 4.62:1. The old 13–15% set fell to 4.01:1 there.
    */
   html {
     /*
@@ -90,27 +94,27 @@
     background-image:
       radial-gradient(
         48rem 32% at 14% 3%,
-        color-mix(in oklab, var(--color-heading) 15%, transparent) 0%,
+        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
         transparent 96%
       ),
       radial-gradient(
         42rem 32% at 86% 26%,
-        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
         transparent 96%
       ),
       radial-gradient(
         46rem 32% at 20% 50%,
-        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
         transparent 96%
       ),
       radial-gradient(
         42rem 32% at 82% 74%,
-        color-mix(in oklab, var(--color-heading) 13%, transparent) 0%,
+        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
         transparent 96%
       ),
       radial-gradient(
         46rem 32% at 48% 97%,
-        color-mix(in oklab, var(--color-heading) 15%, transparent) 0%,
+        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
         transparent 96%
       );
   }
