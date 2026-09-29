@@ -27,13 +27,23 @@ export function Experience() {
     <Section id="experience" title="Experience">
       <ol className="flex list-none flex-col gap-12 p-0">
         {roles.map((role) => (
-          <li key={`${role.company}-${role.title}`}>
+          <li key={`${role.company ?? ''}-${role.title}`}>
             <div className={headRow}>
               <h3 className={entryTitle}>{role.title}</h3>
               <p className={meta}>{role.period}</p>
             </div>
-            <p className="mt-1.5 text-lg">{role.company}</p>
-            <Bullets items={role.highlights} />
+            {role.company && <p className="mt-1.5 text-lg">{role.company}</p>}
+            {role.highlights && <Bullets items={role.highlights} />}
+            {role.engagements && (
+              <ul className="mt-5 flex list-none flex-col gap-7 p-0">
+                {role.engagements.map((engagement) => (
+                  <li key={engagement.name}>
+                    <h4 className="text-lg text-heading">{engagement.name}</h4>
+                    <Bullets items={engagement.highlights} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ol>
@@ -68,7 +78,7 @@ export function Experience() {
         ))}
       </ul>
 
-      <h3 className={`${subhead} mt-20`}>Certifications &amp; Accomplishments</h3>
+      <h3 className={`${subhead} mt-20`}>Certifications &amp; Activities</h3>
       <ul className="list-none columns-1 gap-x-16 p-0 sm:columns-2">
         {accomplishments.map((item) => (
           <li key={item.title} className="mb-6 break-inside-avoid">

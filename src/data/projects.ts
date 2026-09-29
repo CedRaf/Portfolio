@@ -1,11 +1,12 @@
 /**
  * A bullet is plain text, unless it carries a measured result — then it is
  * split so the figure itself can be animated. Splitting beats parsing a number
- * back out of a sentence.
+ * back out of a sentence. `from` is where the count starts — a baseline, when
+ * the sentence is about improving on one.
  */
 export type Highlight =
   | string
-  | { prefix: string; value: number; suffix: string }
+  | { prefix: string; value: number; from?: number; suffix: string }
 
 export type Project = {
   title: string
@@ -24,13 +25,16 @@ export const projects: Project[] = [
     period: 'June 2025 – November 2025',
     stack: ['Python', 'Milvus', 'Neo4j', 'LangChain'],
     description:
-      'Undergraduate thesis. A hybrid RAG framework for financial data analysis that combines graph and vector-based retrieval with optimized preprocessing.',
+      'Undergraduate thesis. A hybrid RAG framework for financial question answering over 200 SEC filings, routing each query — with 97.5% routing accuracy — between dense/sparse vector retrieval in Milvus and a Neo4j knowledge graph built from structured financial statements.',
     highlights: [
       {
-        prefix: 'Boosted retrieval performance by ~',
-        value: 12,
-        suffix: '% over baseline methods',
+        prefix: 'Graph-based retrieval raised answer correctness from 53% to ',
+        value: 68,
+        from: 53,
+        suffix: '% over a flattened JSON baseline',
       },
+      'Context recall rose from 49% to 66% over the same baseline',
+      'The full pipeline outperformed a closed-book LLM on every evaluated metric across 17,000 QA pairs',
       'Official paper published on IEEE Xplore',
     ],
     repoUrl: 'https://github.com/Shabimbawa/RAG_Framework',
@@ -40,7 +44,7 @@ export const projects: Project[] = [
   {
     title: 'Target Trial Emulation',
     period: 'February 2025 – March 2025',
-    stack: ['Python', 'Jupyter Notebook'],
+    stack: ['Python', 'pandas', 'scikit-learn'],
     description:
       'A target trial emulation simulation built by translating an existing R implementation to Python and integrating clustering methods to enhance time-to-event simulations.',
     repoUrl: 'https://github.com/CedRaf/Target-Trial-Emulation',
@@ -54,6 +58,8 @@ export const projects: Project[] = [
     repoUrl: 'https://github.com/CedRaf/Event-Management-System',
     featured: true,
   },
+  // This and the next project are no longer on the résumé (cut for space), but
+  // still true — kept on the site.
   {
     title: 'Mobile E-Commerce Application',
     period: 'May 2024',
