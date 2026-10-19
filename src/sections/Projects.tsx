@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { ArrowUpRight, Lock } from 'lucide-react'
+import { ArrowUpRight, ChevronDown, Lock } from 'lucide-react'
 import { Section } from '../components/Section'
 import { AnimatedNumber } from '../components/AnimatedNumber'
 import { Chip } from '../components/Chip'
 import { Spotlight } from '../components/Spotlight'
+import { PipelineDiagram } from '../components/PipelineDiagram'
 import { projects } from '../data/projects'
 import type { Figure, Project } from '../data/projects'
 
@@ -98,6 +99,26 @@ function CaseStudy({ project, reduceMotion }: { project: Thesis; reduceMotion: b
         <Stack items={project.stack} />
         <p className="max-w-[62ch] leading-relaxed">{project.description}</p>
         <Bullets items={project.notes} />
+        {/*
+          Cropped to the title and authors on purpose: the listing's abstract
+          states relative gains (63% / 31% / 12%) that differ from the
+          résumé's before/after figures shown on this card.
+        */}
+        <a
+          href={project.paperUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 block max-w-[40rem] overflow-hidden rounded-lg border border-heading/15 transition-[border-color] hover:border-heading/40"
+        >
+          <img
+            src={project.paperImage.src}
+            alt={project.paperImage.alt}
+            width={1316}
+            height={236}
+            loading="lazy"
+            className="h-auto w-full"
+          />
+        </a>
         <div className="mt-auto flex flex-wrap items-center gap-6 pt-3">
           <ExternalLink href={project.paperUrl} text="View paper" title={project.title} />
           <ExternalLink href={project.repoUrl} text="View source" title={project.title} />
@@ -117,6 +138,20 @@ function CaseStudy({ project, reduceMotion }: { project: Thesis; reduceMotion: b
           </li>
         ))}
       </ul>
+
+      {/* Collapsed by default: the figures make the case, the diagram is for whoever wants the mechanism. */}
+      <details className="group mt-4 border-t border-heading/15 pt-4 lg:col-span-2 lg:mt-10">
+        <summary className="flex min-h-11 w-fit cursor-pointer list-none items-center gap-2 text-lg text-heading transition-colors hover:text-accent lg:min-h-0 [&::-webkit-details-marker]:hidden">
+          How a question is answered
+          <ChevronDown
+            className="size-5 transition-transform duration-200 group-open:rotate-180"
+            aria-hidden="true"
+          />
+        </summary>
+        <div className="pt-6">
+          <PipelineDiagram />
+        </div>
+      </details>
     </motion.li>
   )
 }
@@ -134,7 +169,10 @@ function ClientCard({
     <motion.li {...reveal(index, reduceMotion)} className={card}>
       <Spotlight />
 
-      <p className={label}>Client work{project.ongoing && ' · Ongoing'}</p>
+      <p className={label}>
+        Client work{project.team && ' · Team'}
+        {project.ongoing && ' · Ongoing'}
+      </p>
       <div>
         <h4 className={projectTitle}>{project.title}</h4>
         <p className="mt-1 text-lg">{project.client}</p>
@@ -147,6 +185,9 @@ function ClientCard({
       </div>
 
       <p className="leading-relaxed">{project.description}</p>
+      <p className="leading-relaxed">
+        <span className="text-heading">My part:</span> {project.role}
+      </p>
       <Bullets items={project.highlights} />
 
       <p className="mt-auto flex items-center gap-2 pt-3 text-[15.75px]">
