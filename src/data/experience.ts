@@ -1,23 +1,17 @@
 /** Work, education, skills and credentials — transcribed from `public/resume.pdf`. */
 
-/** A client engagement inside a role — freelance work is grouped this way. */
-export type Engagement = {
-  name: string
-  highlights: string[]
-}
-
 /**
- * A role carries either its own highlights or a set of engagements. Freelance
- * work has no employer, so `company` is optional.
+ * Freelance work has no employer, so `company` is optional. `link` points a
+ * role at where its work is shown in full — the freelance client builds live
+ * in Projects rather than being repeated here.
  */
 export type Role = {
   company?: string
   title: string
   period: string
-} & (
-  | { highlights: string[]; engagements?: never }
-  | { highlights?: never; engagements: Engagement[] }
-)
+  highlights: string[]
+  link?: { href: string; label: string }
+}
 
 export type Education = {
   school: string
@@ -41,21 +35,12 @@ export const roles: Role[] = [
   {
     title: 'Freelance Software Developer',
     period: 'August 2026 – Present',
-    engagements: [
-      {
-        name: 'Real-Time Scoreboard System (Pickleball Court)',
-        highlights: [
-          "Developing the React (TypeScript) frontend for a real-time scoreboard across 2 courts, where dedicated remote devices update each court's TV display over WebSockets with under 100ms latency.",
-        ],
-      },
-      {
-        name: 'Order Management System (Rice Wholesaler)',
-        highlights: [
-          'Building the order and sales module of a warehouse management system for a local wholesaler processing 100+ order slips daily, using React, TypeScript, PostgreSQL and Drizzle ORM.',
-          "Designed the module's database schemas and backend, with stock deductions synced to warehouse inventory and daily sales summaries per cashier.",
-        ],
-      },
+    // The résumé lists both client engagements here; on the site they are
+    // project cards (see `projects.ts`), so this entry only summarises them.
+    highlights: [
+      'Building two client systems: the order and sales module of a warehouse management system for a rice wholesaler, and the frontend of a real-time scoreboard for a pickleball court.',
     ],
+    link: { href: '#client-work', label: 'See the client work' },
   },
   {
     company: 'Alliance Software Incorporated',
