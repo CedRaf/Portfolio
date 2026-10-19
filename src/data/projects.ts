@@ -27,12 +27,16 @@ export type Project = BaseProject &
         notes: string[]
         repoUrl: string
         paperUrl: string
+        paperImage: { src: string; alt: string }
       }
     | {
         kind: 'client'
         client: string
         /** Client codebases are private, so there is no link — only a figure. */
         figure: { text: string; label: string }
+        /** Both are team builds, so the card says which part was mine. */
+        team: boolean
+        role: string
         highlights: string[]
         ongoing: boolean
       }
@@ -63,21 +67,29 @@ export const projects: Project[] = [
     ],
     repoUrl: 'https://github.com/Shabimbawa/RAG_Framework',
     paperUrl: 'https://ieeexplore.ieee.org/document/11467963',
+    paperImage: {
+      src: '/images/rag-paper-listing.png',
+      alt: 'IEEE Xplore listing: Integrating Dense, Sparse, and Graph-Based Approaches in Financial Data Analysis for a Retrieval-Augmented Generation Framework, listing Cedric Thomas Y. Rafanan, Rhenz Gerard G. Largo and Glenn B. Pepito as authors',
+    },
   },
   // Client work comes from the Freelance role on the résumé, which lists these
   // as engagements under Experience. They have no dates of their own, so each
   // carries the role's period.
+  //
+  // TODO: the team framing and the scoreboard's WebSocket role are ahead of the
+  // Sept 2026 résumé, which says only "Developing the React (TypeScript)
+  // frontend". Cedric is updating the PDF to match — re-check once it lands.
   {
     kind: 'client',
     title: 'Order Management System',
     client: 'Rice wholesaler',
     period: 'August 2026 – Present',
     stack: ['React', 'TypeScript', 'PostgreSQL', 'Drizzle'],
-    description:
-      'The order and sales module of a warehouse management system for a local wholesaler.',
+    description: 'A warehouse management system for a local wholesaler.',
     figure: { text: '100+', label: 'order slips processed daily' },
+    team: true,
+    role: 'The order and sales module, including its database schemas and backend.',
     highlights: [
-      "Designed the module's database schemas and backend",
       'Stock deductions sync to warehouse inventory',
       'Daily sales summaries per cashier',
     ],
@@ -91,8 +103,9 @@ export const projects: Project[] = [
     stack: ['React', 'TypeScript', 'WebSockets'],
     description: 'A real-time scoreboard system running across 2 courts.',
     figure: { text: '<100ms', label: 'display update latency' },
+    team: true,
+    role: "The WebSocket layer, server and client, and the frontend's core logic and state.",
     highlights: [
-      'Developing the React (TypeScript) frontend',
       "Dedicated remote devices update each court's TV display over WebSockets",
     ],
     ongoing: true,

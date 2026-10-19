@@ -38,7 +38,7 @@ export const roles: Role[] = [
     // The résumé lists both client engagements here; on the site they are
     // project cards (see `projects.ts`), so this entry only summarises them.
     highlights: [
-      'Building two client systems: the order and sales module of a warehouse management system for a rice wholesaler, and the frontend of a real-time scoreboard for a pickleball court.',
+      'Building two client systems as part of a team: the order and sales module of a warehouse management system for a rice wholesaler, and the WebSocket layer and frontend logic of a real-time scoreboard for a pickleball court.',
     ],
     link: { href: '#client-work', label: 'See the client work' },
   },
