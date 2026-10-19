@@ -1,3 +1,4 @@
+import { ArrowUp } from 'lucide-react'
 import { Section } from '../components/Section'
 import { Chip } from '../components/Chip'
 import { accomplishments, education, roles, skills } from '../data/experience'
@@ -33,16 +34,15 @@ export function Experience() {
               <p className={meta}>{role.period}</p>
             </div>
             {role.company && <p className="mt-1.5 text-lg">{role.company}</p>}
-            {role.highlights && <Bullets items={role.highlights} />}
-            {role.engagements && (
-              <ul className="mt-5 flex list-none flex-col gap-7 p-0">
-                {role.engagements.map((engagement) => (
-                  <li key={engagement.name}>
-                    <h4 className="text-lg text-heading">{engagement.name}</h4>
-                    <Bullets items={engagement.highlights} />
-                  </li>
-                ))}
-              </ul>
+            <Bullets items={role.highlights} />
+            {role.link && (
+              <a
+                href={role.link.href}
+                className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-heading underline-offset-4 transition-colors hover:text-accent hover:underline lg:min-h-0"
+              >
+                {role.link.label}
+                <ArrowUp className="size-4" aria-hidden="true" />
+              </a>
             )}
           </li>
         ))}
