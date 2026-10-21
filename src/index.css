@@ -182,6 +182,50 @@
   }
 
   /*
+   * Carousel arrows sit over the image and only appear while the carousel is
+   * hovered or holds keyboard focus — on devices that can hover. Touch screens
+   * have nothing to reveal them with, so there they stay shown. Written here
+   * rather than as Tailwind variants because the media-query `opacity-0` was
+   * emitted after `group-focus-within`, so focused arrows stayed invisible.
+   */
+  @media (hover: hover) {
+    .carousel-controls {
+      opacity: 0;
+    }
+
+    .group:hover > .carousel-controls,
+    .group:focus-within > .carousel-controls {
+      opacity: 1;
+    }
+  }
+
+  /*
+   * The enlarged-image dialog eases in rather than snapping open: feedback
+   * that the click did something. Keyframes, so the reduced-motion reset at
+   * the bottom of this file already collapses them.
+   */
+  .lightbox[open] {
+    animation: lightbox-in 200ms ease-out;
+  }
+
+  .lightbox[open]::backdrop {
+    animation: lightbox-fade 200ms ease-out;
+  }
+
+  @keyframes lightbox-in {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+
+  @keyframes lightbox-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /*
    * Shared horizontal rhythm for every full-bleed band. Padding grows with the
    * viewport so content never hugs the edge of a wide monitor.
    */
