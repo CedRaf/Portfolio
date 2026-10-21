@@ -22,15 +22,16 @@ const retrievers = [
 
 const after: Stage[] = [{ name: 'Document ranker' }, { name: 'LLM response' }]
 
-const step = 'flex w-full flex-col items-center gap-3 xl:w-auto xl:flex-1 xl:flex-row'
+const step =
+  'flex w-full flex-col items-center gap-3 @3xl:w-auto @3xl:min-w-0 @3xl:flex-1 @3xl:flex-row @3xl:gap-2'
 const node =
-  'w-full max-w-[16rem] rounded-lg border text-center xl:max-w-none xl:flex-1'
+  'w-full max-w-[16rem] rounded-lg border text-center @3xl:max-w-none @3xl:min-w-0 @3xl:flex-1'
 
 /** Points down while the diagram stacks, right once it runs in a row. */
 function Arrow() {
   return (
     <ArrowRight
-      className="size-5 shrink-0 rotate-90 text-fg xl:rotate-0"
+      className="size-5 shrink-0 rotate-90 text-fg @3xl:size-4 @3xl:rotate-0"
       aria-hidden="true"
     />
   )
@@ -41,7 +42,7 @@ function StageNode({ stage, first }: { stage: Stage; first: boolean }) {
     <li className={step}>
       {!first && <Arrow />}
       <div
-        className={`${node} px-4 py-3 ${stage.emphasis ? 'border-heading' : 'border-heading/20'}`}
+        className={`${node} px-4 py-3 @3xl:px-2.5 ${stage.emphasis ? 'border-heading' : 'border-heading/20'}`}
       >
         <p className="text-[15.75px] leading-snug text-heading">{stage.name}</p>
         {stage.note && <p className="mt-1 text-[13.65px]">{stage.note}</p>}
@@ -52,14 +53,16 @@ function StageNode({ stage, first }: { stage: Stage; first: boolean }) {
 
 export function PipelineDiagram() {
   return (
-    // Captioned by the disclosure that wraps it in Projects, so no figcaption.
-    <figure aria-label="Query pipeline" className="flex flex-col gap-6">
-      <ol className="flex list-none flex-col items-center gap-3 p-0 xl:flex-row">
+    // Captioned by the heading above it in ProjectDetail, so no figcaption.
+    // A container query, not a viewport breakpoint: the diagram's room depends
+    // on the panel it sits in, not on the window.
+    <figure aria-label="Query pipeline" className="@container flex flex-col gap-6">
+      <ol className="flex list-none flex-col items-center gap-3 p-0 @3xl:flex-row @3xl:gap-2">
         {before.map((stage, index) => (
           <StageNode key={stage.name} stage={stage} first={index === 0} />
         ))}
 
-        <li className={`${step} xl:flex-[1.4]`}>
+        <li className={`${step} @3xl:flex-[1.5]`}>
           <Arrow />
           <div className={`${node} border-dashed border-heading/30 p-2`}>
             <p className="mb-2 text-[13.65px]">Retrievers</p>
@@ -67,7 +70,7 @@ export function PipelineDiagram() {
               {retrievers.map((retriever) => (
                 <li
                   key={retriever.name}
-                  className="flex items-baseline justify-between gap-3 rounded-md border border-heading/20 px-3 py-1.5"
+                  className="flex items-baseline justify-between gap-2 rounded-md border border-heading/20 px-3 py-1.5 @3xl:px-2"
                 >
                   <span className="text-[15.75px] text-heading">{retriever.name}</span>
                   <span className="font-mono text-[13.65px]">{retriever.store}</span>
