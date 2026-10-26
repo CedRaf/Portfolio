@@ -42,7 +42,7 @@ export function Carousel({ label, slides }: { label: string; slides: readonly Sl
             >
               <ImageZoom
                 shot={slide}
-                className={`aspect-[2/1] h-auto w-full ${slide.contain ? 'bg-bg object-contain' : 'object-cover'}`}
+                className={`aspect-[2/1] h-auto w-full ${slide.contain ? 'bg-bg object-contain' : 'object-cover object-top'}`}
               />
             </div>
           )

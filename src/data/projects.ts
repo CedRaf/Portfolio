@@ -32,8 +32,9 @@ type BaseProject = {
 }
 
 /**
- * `kind` decides the tier a project renders in: the thesis as a full-width case
- * study, client work as cards, personal projects as compact rows.
+ * `kind` decides where a project renders: the thesis, client work and
+ * featured personal apps (`app`) go in the selector; other personal projects
+ * are compact rows.
  */
 export type Project = BaseProject &
   (
@@ -57,11 +58,19 @@ export type Project = BaseProject &
         ongoing: boolean
         media: Media
       }
+    | {
+        kind: 'app'
+        figure: { text: string; label: string }
+        highlights: string[]
+        repoUrl: string
+        demoUrl: string
+        media: Media
+      }
     | { kind: 'personal'; repoUrl: string }
   )
 
 /** The projects shown in the selector, rather than as plain rows. */
-export type Featured = Extract<Project, { kind: 'thesis' | 'client' }>
+export type Featured = Extract<Project, { kind: 'thesis' | 'client' | 'app' }>
 
 export const projects: Project[] = [
   {
@@ -116,10 +125,6 @@ export const projects: Project[] = [
   // Client work comes from the Freelance role on the résumé, which lists these
   // as engagements under Experience. They have no dates of their own, so each
   // carries the role's period.
-  //
-  // TODO: the team framing and the scoreboard's WebSocket role are ahead of the
-  // Sept 2026 résumé, which says only "Developing the React (TypeScript)
-  // frontend". Cedric is updating the PDF to match — re-check once it lands.
   {
     kind: 'client',
     title: 'Order Management System',
@@ -175,9 +180,9 @@ export const projects: Project[] = [
     description: 'A real-time scoreboard system running across 2 courts.',
     figure: { text: '<100ms', label: 'display update latency' },
     team: true,
-    role: "The WebSocket layer, server and client, and the frontend's core logic and state.",
+    role: 'The WebSocket layer (server and client) and the core React (TypeScript) frontend.',
     highlights: [
-      "Dedicated remote devices update each court's TV display over WebSockets",
+      "Remote devices keep each court's TV display in sync over WebSockets",
     ],
     // Sample screens with no client data.
     // TODO: confirm the client is happy for their venue branding, visible on
@@ -212,6 +217,77 @@ export const projects: Project[] = [
     },
     ongoing: true,
   },
+  // Facts from the Oct 2026 résumé; the finer engineering detail (test split,
+  // themes, keyboard support) is from the project's README
+  // (github.com/CedRaf/jobtracker). The demo runs on made-up sample data.
+  {
+    kind: 'app',
+    title: 'JobTracker',
+    period: 'October 2026',
+    stack: ['Python', 'TypeScript', 'React', 'Supabase', 'PostgreSQL', 'GitHub Actions', 'Vercel'],
+    description:
+      'A personal job-search pipeline. A Python scraper on GitHub Actions pulls listings from multiple job boards twice a day and filters them with a weighted rules engine; a React dashboard is where new listings are reviewed, applications tracked and the rules tuned.',
+    figure: {
+      text: '1,700+',
+      label: 'listings scanned in five days, with ~80% filtered out automatically by the rules engine',
+    },
+    highlights: [
+      'Supabase PostgreSQL backend with row-level security and audit tables, so a static React app reads and writes securely without a custom server',
+      'Migrated 500+ records from a Google Sheets prototype using dual writes',
+      'Drag-and-drop kanban board, funnel analytics, and filter rules written as plain words, compiled to regex, with one-click rollback',
+      '237 tests in CI (129 pytest, 108 Vitest), including a regression set of hand-labelled real listings',
+      'Light and dark themes, keyboard navigation including the kanban board, and a phone layout',
+    ],
+    repoUrl: 'https://github.com/CedRaf/jobtracker',
+    demoUrl: 'https://jobtracker-live-demo.vercel.app/',
+    // Screens from the public demo, so all data shown is sample data. They are
+    // taller than 2:1; the carousel anchors them to the top, and the enlarged
+    // view shows each one whole.
+    media: {
+      kind: 'carousel',
+      label: 'JobTracker screens',
+      slides: [
+        {
+          name: 'Jobs',
+          src: '/images/jobtracker-jobs-dark-1280.jpg',
+          width: 1280,
+          height: 914,
+          alt: 'The JobTracker jobs page in the dark theme: summary cards, filters and a table of entry-level listings with skills, concerns and status',
+        },
+        {
+          name: 'Board',
+          src: '/images/jobtracker-board-1280.jpg',
+          width: 1280,
+          height: 823,
+          alt: 'The kanban board, with application cards in New, Applied, Emailed, Interview and Offer columns',
+        },
+        {
+          name: 'Analytics',
+          src: '/images/jobtracker-analytics-1280.jpg',
+          width: 1280,
+          height: 1189,
+          alt: 'The analytics page: scraper health, response rate, new jobs per day, the application funnel and the skills employers ask for',
+        },
+        {
+          name: 'Rules',
+          src: '/images/jobtracker-rules-1280.jpg',
+          width: 1280,
+          height: 823,
+          alt: 'The scraper rules editor, with search keywords, a listing age limit and a distance from Cebu City',
+        },
+        {
+          name: 'Jobs, light theme',
+          src: '/images/jobtracker-jobs-light-1280.jpg',
+          width: 1280,
+          height: 914,
+          alt: 'The same jobs page in the light theme',
+        },
+      ],
+    },
+  },
+  // Every project from here down is off the Oct 2026 résumé (cut for space,
+  // Target Trial Emulation and Event Management most recently), but still
+  // true — kept on the site.
   {
     kind: 'personal',
     title: 'Target Trial Emulation',
@@ -230,8 +306,6 @@ export const projects: Project[] = [
       'An event management system with a modern web stack, streamlining event scheduling and user access with Google Sign-In authentication.',
     repoUrl: 'https://github.com/CedRaf/Event-Management-System',
   },
-  // This and the next project are no longer on the résumé (cut for space), but
-  // still true — kept on the site.
   {
     kind: 'personal',
     title: 'Mobile E-Commerce Application',

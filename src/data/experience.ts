@@ -38,7 +38,7 @@ export const roles: Role[] = [
     // The résumé lists both client engagements here; on the site they are
     // project cards (see `projects.ts`), so this entry only summarises them.
     highlights: [
-      'Building two client systems as part of a team: the order and sales module of a warehouse management system for a rice wholesaler, and the WebSocket layer and frontend logic of a real-time scoreboard for a pickleball court.',
+      'Building two client systems as part of a team: the order and sales module of a warehouse management system for a rice wholesaler, and the WebSocket layer and core React frontend of a real-time scoreboard for a pickleball court.',
     ],
     link: { href: '#client-work', label: 'See the client work' },
   },
@@ -47,9 +47,11 @@ export const roles: Role[] = [
     title: 'Software Developer Intern',
     period: 'September 2025 – March 2026',
     highlights: [
-      'Built an internal exit clearance system using React (TypeScript) and C# that replaced paper-based offboarding routing across HR and department approvers.',
-      'Engineered JWT-based authentication with role-based conditional rendering, giving HR admins and employees distinct access levels and restricting sensitive offboarding data to authorized roles.',
-      'Presented system to stakeholders and worked closely with QA and ~15 employee testers to refine features, incorporating feedback ahead of company-wide rollout.',
+      'Took over an unfinished exit clearance system (React, TypeScript, C#) and brought it to company-wide rollout, replacing paper-based offboarding.',
+      // The Oct 2026 résumé says "to unauthorized roles" here, a typo for the
+      // opposite meaning. The site says what was meant.
+      'Fixed broken JWT authentication, API endpoints and role-based access, restricting sensitive offboarding data to authorized roles.',
+      'Presented the system to stakeholders and refined features with QA and ~15 employee testers.',
     ],
   },
 ]
@@ -86,8 +88,12 @@ export const skills: SkillGroup[] = [
     items: ['React', 'React Native', 'Node.js', 'Express', 'Prisma', 'Drizzle', '.NET'],
   },
   {
-    label: 'Databases & Tools',
-    items: ['MySQL', 'PostgreSQL', 'Milvus', 'Neo4j', 'Git & GitHub', 'Azure DevOps', 'Postman', 'Vercel', 'Claude Code', 'GitHub Copilot'],
+    label: 'Databases',
+    items: ['MySQL', 'PostgreSQL', 'Milvus', 'Neo4j', 'Supabase'],
+  },
+  {
+    label: 'Tools',
+    items: ['Git & GitHub', 'GitHub Actions', 'Azure DevOps', 'Postman', 'Vercel', 'Claude Code', 'GitHub Copilot'],
   },
   {
     label: 'Spoken',

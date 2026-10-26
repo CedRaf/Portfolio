@@ -8,6 +8,7 @@ import type { Featured, Figure } from '../data/projects'
 
 type Thesis = Extract<Featured, { kind: 'thesis' }>
 type Client = Extract<Featured, { kind: 'client' }>
+type App = Extract<Featured, { kind: 'app' }>
 
 const label = 'font-mono text-[13.65px] leading-5'
 const title = 'font-display text-3xl leading-snug text-heading lg:text-4xl'
@@ -111,11 +112,41 @@ function ClientDetail({ project }: { project: Client }) {
   )
 }
 
+function AppDetail({ project }: { project: App }) {
+  return (
+    <div className="flex flex-col gap-5">
+      <div className={mediaFrame}>
+        <ProjectMedia media={project.media} />
+      </div>
+
+      <p className={label}>Personal project · {project.period}</p>
+      <h4 className={title}>{project.title}</h4>
+      <TechStack items={project.stack} />
+
+      <div className="py-2">
+        <p className={bigFigure}>{project.figure.text}</p>
+        <p className="mt-2 text-[15.75px]">{project.figure.label}</p>
+      </div>
+
+      <p className="max-w-[62ch] leading-relaxed">{project.description}</p>
+      <Bullets items={project.highlights} />
+
+      <div className="flex flex-wrap items-center gap-6">
+        <ExternalLink href={project.demoUrl} text="Live demo" title={project.title} />
+        <ExternalLink href={project.repoUrl} text="View source" title={project.title} />
+      </div>
+    </div>
+  )
+}
+
 /** Everything about one featured project, shown in the selector's panel. */
 export function ProjectDetail({ project }: { project: Featured }) {
-  return project.kind === 'thesis' ? (
-    <ThesisDetail project={project} />
-  ) : (
-    <ClientDetail project={project} />
-  )
+  switch (project.kind) {
+    case 'thesis':
+      return <ThesisDetail project={project} />
+    case 'client':
+      return <ClientDetail project={project} />
+    case 'app':
+      return <AppDetail project={project} />
+  }
 }

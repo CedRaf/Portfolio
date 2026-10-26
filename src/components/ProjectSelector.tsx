@@ -24,8 +24,14 @@ function thumbnailOf(project: Featured): { shot: Shot; contain: boolean } {
   return { shot: first, contain: first.contain ?? false }
 }
 
+const kindLabels: Record<Featured['kind'], string> = {
+  thesis: 'Thesis',
+  client: 'Client work',
+  app: 'Personal project',
+}
+
 function kindOf(project: Featured) {
-  return project.kind === 'thesis' ? 'Thesis' : 'Client work'
+  return kindLabels[project.kind]
 }
 
 /**
