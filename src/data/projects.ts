@@ -100,10 +100,19 @@ export const projects: Project[] = [
     // published abstract misstates the results (63% / 31% / 12%), an error
     // missed before publication. The figures above are the correct ones,
     // matching the résumé. Don't show the abstract until an erratum fixes it.
+    // The repository card leads because it fills the 2:1 frame; the IEEE
+    // strip would leave the well mostly empty.
     media: {
       kind: 'carousel',
       label: 'Thesis publication and repository',
       slides: [
+        {
+          name: 'GitHub repository',
+          src: '/images/rag-repository-1200.jpg',
+          width: 1200,
+          height: 600,
+          alt: 'GitHub preview card for Shabimbawa/RAG_Framework, the team thesis repository, showing 2 contributors',
+        },
         {
           name: 'IEEE Xplore',
           src: '/images/rag-paper-listing.png',
@@ -111,13 +120,6 @@ export const projects: Project[] = [
           height: 236,
           contain: true,
           alt: 'IEEE Xplore listing: Integrating Dense, Sparse, and Graph-Based Approaches in Financial Data Analysis for a Retrieval-Augmented Generation Framework, listing Cedric Thomas Y. Rafanan, Rhenz Gerard G. Largo and Glenn B. Pepito as authors',
-        },
-        {
-          name: 'GitHub repository',
-          src: '/images/rag-repository-1200.jpg',
-          width: 1200,
-          height: 600,
-          alt: 'GitHub preview card for Shabimbawa/RAG_Framework, the team thesis repository, showing 2 contributors',
         },
       ],
     },
