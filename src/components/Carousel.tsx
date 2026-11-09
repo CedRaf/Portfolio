@@ -4,7 +4,7 @@ import { ImageZoom } from './ImageZoom'
 import type { Slide } from '../data/projects'
 
 const control =
-  'pointer-events-auto grid size-11 place-items-center rounded-full border border-heading/60 bg-bg/80 text-heading backdrop-blur-sm transition-colors hover:border-heading hover:text-accent lg:size-9'
+  'pointer-events-auto grid size-11 place-items-center rounded-full border border-control bg-bg/90 text-heading shadow-[0_4px_12px_-4px_rgb(0_0_0/0.3)] transition-colors hover:border-heading hover:bg-bg lg:size-9'
 
 /**
  * A manual carousel — no autoplay, so nothing moves unless the reader asks
@@ -42,7 +42,7 @@ export function Carousel({ label, slides }: { label: string; slides: readonly Sl
             >
               <ImageZoom
                 shot={slide}
-                className={`aspect-[2/1] h-auto w-full ${slide.contain ? 'bg-bg object-contain' : 'object-cover object-top'}`}
+                className={`aspect-[2/1] h-auto w-full ${slide.contain ? 'bg-surface object-contain' : 'object-cover object-top'}`}
               />
             </div>
           )

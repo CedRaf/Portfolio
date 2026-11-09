@@ -1,165 +1,178 @@
 @import 'tailwindcss';
 
 /*
- * Instrument Serif carries the display headings. Self-hosted, subset to the
- * characters this site actually uses (basic latin + the punctuation in the
- * copy), which took it from a 67 kB .ttf to 18.4 kB. Licence in
- * public/fonts/OFL.txt.
- *
- * Regular only — the family ships no bold, and `font-synthesis: none` below
- * means a `font-bold` heading would render at regular weight rather than
- * faux-bolding. Keep display headings at their default weight.
+ * Two faces. Geist (variable 100–900, Latin, 29.4 kB) sets everything; Bricolage
+ * Grotesque SemiBold (Latin, 22.4 kB) sets display headings only. Both from
+ * Fontsource 5.3.0, licences in public/fonts/.
  */
 @font-face {
-  font-family: 'Instrument Serif';
-  src: url('/fonts/InstrumentSerif-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/fonts/BricolageGrotesque-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /*
- * Design tokens. Tailwind v4 generates utilities from these:
- *   --color-accent  ->  bg-accent / text-accent / border-accent
- *   --font-display  ->  font-display
- *   --shadow-card   ->  shadow-card
- * Opacity modifiers work too, e.g. bg-accent/10, border-accent/50.
+ * Design tokens, built on the v2 portfolio's yellow (#ffe45b) and warmed
+ * neutrals. Light values here; the dark set overrides the same custom
+ * properties below, so no `dark:` variant appears in the markup.
  *
- * Dark-only by design (§9). There is no light palette and no theme toggle —
- * a second scheme would be a change of direction, not an addition.
+ *   bg / surface      canvas and the one raised step (hover rows, media wells)
+ *   border            decorative hairlines only (fails 3:1 on purpose)
+ *   control           edges that ARE the affordance (≥3:1)
+ *   fg / subtle       body text / meta text
+ *   heading           names, titles, emphasis
+ *   accent            yellow as TEXT: links, focus ring. Deep ochre in light
+ *                     mode, because #ffe45b on white is ~1.3:1
+ *   highlight         yellow as FILL: primary button, Contact card, selection
+ *   highlight-fg      text on a highlight fill
+ *   chip / chip-fg    stack chips
+ *   live              the "In use now" dot; green keeps meaning "running"
  */
 @theme {
-  --color-bg: #1a1a1a;
-  --color-muted: #343434;
-  --color-border: #26262c;
-  --color-fg: #a1a1ab;
-  --color-heading: #f4f4f5;
-  --color-accent: #ffe45b;
-  /* Text placed *on* an accent fill. Never use it as a page-level color. */
-  --color-accent-fg: #0b0b0d;
+  --color-bg: #fafaf8;
+  --color-surface: #f1f0eb;
+  --color-border: #e6e4de;
+  --color-control: #878279;
+  --color-fg: #47433d;
+  --color-subtle: #67625a;
+  --color-heading: #1a1918;
+  --color-accent: #755600;
+  --color-highlight: #ffe45b;
+  --color-highlight-fg: #1a1918;
+  --color-chip: #fcf2c1;
+  --color-chip-fg: #1a1918;
+  --color-live: #0a7650;
 
-  /*
-   * Instrument Serif with the old system old-style stack kept behind it — that
-   * is what paints during `font-display: swap` and if the file ever 404s.
-   */
+  --font-sans:
+    'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
   --font-display:
-    'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Palatino,
-    'Book Antiqua', Georgia, serif;
-  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, Consolas, monospace;
-
-  --shadow-card: 0 16px 40px -12px rgb(0 0 0 / 0.7);
+    'Bricolage Grotesque', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Consolas, monospace;
 }
 
+/*
+ * Dark palette. Applied when the visitor's OS prefers dark and they haven't
+ * picked light with the toggle, or when they've picked dark explicitly.
+ * index.html sets `data-theme` before first paint from a stored choice.
+ */
 @layer base {
   :root {
-    color-scheme: dark;
-    scroll-behavior: smooth;
-    /* Keeps anchor targets clear of the sticky header. */
-    scroll-padding-top: 5rem;
+    color-scheme: light;
   }
 
-  /*
-   * Background glows (§9.2), anchored to the document rather than the viewport
-   * so they scroll past with the content instead of sitting pinned to the
-   * screen. Spread down the full page height — two glows at the ends left the
-   * whole middle of a long page flat, which is why they read as absent.
-   *
-   * Vertical radii are percentages of document height so coverage holds as
-   * content grows; horizontal radii stay in rem so the width is predictable.
-   * Colours come from --color-heading via color-mix rather than hardcoded
-   * hexes, so they track the palette. X positions alternate to limit overlap —
-   * two stacked glows lift the canvas twice, and that spot is what decides
-   * whether body text still clears AA.
-   *
-   * 10% each is measured, not picked: narrow viewports overlap the most (the
-   * rem radii are wide relative to the screen), and at 375px the worst point
-   * holds body text at 4.62:1. The old 13–15% set fell to 4.01:1 there.
-   */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      color-scheme: dark;
+      --color-bg: #1a1918;
+      --color-surface: #242321;
+      --color-border: #2e2c29;
+      --color-control: #7a756c;
+      --color-fg: #aba69e;
+      --color-subtle: #8f8a82;
+      --color-heading: #f5f3ef;
+      --color-accent: #ffe45b;
+      --color-highlight: #ffe45b;
+      --color-highlight-fg: #1a1918;
+      --color-chip: #353120;
+      --color-chip-fg: #ffe45b;
+      --color-live: #4fd8a0;
+    }
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --color-bg: #1a1918;
+    --color-surface: #242321;
+    --color-border: #2e2c29;
+    --color-control: #7a756c;
+    --color-fg: #aba69e;
+    --color-subtle: #8f8a82;
+    --color-heading: #f5f3ef;
+    --color-accent: #ffe45b;
+    --color-highlight: #ffe45b;
+    --color-highlight-fg: #1a1918;
+    --color-chip: #353120;
+    --color-chip-fg: #ffe45b;
+    --color-live: #4fd8a0;
+  }
+
   html {
-    /*
-     * Everything is rem-based, so a 5% bump here scales the whole page — type
-     * and the spacing scale together, which keeps the proportions intact.
-     *
-     * A percentage, not a px value: this multiplies the visitor's own browser
-     * font-size preference instead of overriding it. `font-size: 16.8px` would
-     * silently discard the setting of anyone who has enlarged their default.
-     *
-     * Breakpoints are unaffected — rem inside a media query resolves against
-     * the initial 16px, not this value, so sm:/lg: still fire where they did.
-     */
-    font-size: 105%;
+    /* 17px from the browser's 16px default, as a percentage so a visitor's
+       own larger default still scales. Breakpoints are unaffected. */
+    font-size: 106.25%;
+    scroll-behavior: smooth;
     background-color: var(--color-bg);
-    background-repeat: no-repeat;
-    background-image:
-      radial-gradient(
-        48rem 32% at 14% 3%,
-        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
-        transparent 96%
-      ),
-      radial-gradient(
-        42rem 32% at 86% 26%,
-        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
-        transparent 96%
-      ),
-      radial-gradient(
-        46rem 32% at 20% 50%,
-        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
-        transparent 96%
-      ),
-      radial-gradient(
-        42rem 32% at 82% 74%,
-        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
-        transparent 96%
-      ),
-      radial-gradient(
-        46rem 32% at 48% 97%,
-        color-mix(in oklab, var(--color-heading) 10%, transparent) 0%,
-        transparent 96%
-      );
   }
 
   body {
-    background-color: transparent;
+    background-color: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
-    font-synthesis: none;
+    font-feature-settings: 'ss01', 'cv11';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Full-bleed shell (§9.3): the container never constrains, the text does. */
-  #root {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
+  ::selection {
+    background-color: var(--color-highlight);
+    color: var(--color-highlight-fg);
   }
 
-  /* Single visible focus treatment for every interactive element. */
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 3px;
+    border-radius: 0.375rem;
+  }
+
+  /* Anchor targets land a little below the top edge, clear of the sticky
+     section headings on small screens. */
+  [id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  @media (width >= 64rem) {
+    [id] {
+      scroll-margin-top: 5rem;
+    }
   }
 }
 
-/*
- * Written as plain CSS rather than utilities: the off-screen `top` and the
- * on-focus `top` are the same property, and as Tailwind classes the resting
- * value won the cascade, so the link never appeared for keyboard users.
- */
 @layer components {
+  /*
+   * Plain CSS rather than utilities: the off-screen `top` and the on-focus
+   * `top` are the same property, and as Tailwind classes the resting value
+   * won the cascade.
+   */
   .skip-link {
     position: absolute;
     left: 1rem;
     top: -6rem;
-    z-index: 30;
+    z-index: 40;
     padding: 0.625rem 1rem;
-    border: 1px solid var(--color-accent);
-    border-radius: 0.375rem;
-    background-color: var(--color-bg);
-    color: var(--color-heading);
+    border-radius: 0.5rem;
+    background-color: var(--color-heading);
+    color: var(--color-bg);
+    font-weight: 500;
     text-decoration: none;
     transition: top 0.2s ease;
   }
@@ -169,10 +182,8 @@
   }
 
   /*
-   * The uploaded LinkedIn mark is solid black on transparency, so it is
-   * invisible on the near-black canvas (~1.07:1). Using it as a mask paints the
-   * shape in currentColor instead, which matches the GitHub icon and follows
-   * the link's hover colour.
+   * The uploaded LinkedIn mark is solid black on transparency. Used as a mask
+   * it paints in currentColor, so it follows the theme and link hover.
    */
   .icon-linkedin {
     display: inline-block;
@@ -182,11 +193,8 @@
   }
 
   /*
-   * Carousel arrows sit over the image and only appear while the carousel is
-   * hovered or holds keyboard focus — on devices that can hover. Touch screens
-   * have nothing to reveal them with, so there they stay shown. Written here
-   * rather than as Tailwind variants because the media-query `opacity-0` was
-   * emitted after `group-focus-within`, so focused arrows stayed invisible.
+   * Carousel arrows appear while the carousel is hovered or focused, on
+   * devices that can hover; touch screens keep them shown.
    */
   @media (hover: hover) {
     .carousel-controls {
@@ -199,17 +207,12 @@
     }
   }
 
-  /*
-   * The enlarged-image dialog eases in rather than snapping open: feedback
-   * that the click did something. Keyframes, so the reduced-motion reset at
-   * the bottom of this file already collapses them.
-   */
   .lightbox[open] {
-    animation: lightbox-in 200ms ease-out;
+    animation: lightbox-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .lightbox[open]::backdrop {
-    animation: lightbox-fade 200ms ease-out;
+    animation: lightbox-fade 220ms ease-out;
   }
 
   @keyframes lightbox-in {
@@ -226,34 +229,134 @@
   }
 
   /*
-   * Shared horizontal rhythm for every full-bleed band. Padding grows with the
-   * viewport so content never hugs the edge of a wide monitor.
+   * First-load entrance: each direct child resolves in turn — up 6px, out of
+   * a 6px blur — on an exponential ease-out. Once only; the reduced-motion
+   * block at the end of this file collapses it.
    */
-  .band {
-    padding-inline: 1.5rem;
+  .enter-stagger > * {
+    animation: resolve 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  @media (width >= 40rem) {
-    .band {
-      padding-inline: 2.5rem;
+  .enter-stagger > :nth-child(2) { animation-delay: 50ms; }
+  .enter-stagger > :nth-child(3) { animation-delay: 100ms; }
+  .enter-stagger > :nth-child(4) { animation-delay: 150ms; }
+  .enter-stagger > :nth-child(5) { animation-delay: 200ms; }
+  .enter-stagger > :nth-child(6) { animation-delay: 250ms; }
+  .enter-stagger > :nth-child(7) { animation-delay: 300ms; }
+  .enter-stagger > :nth-child(n + 8) { animation-delay: 350ms; }
+
+  .enter-late {
+    animation: resolve 700ms 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes resolve {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(6px);
     }
   }
 
-  @media (width >= 64rem) {
-    .band {
-      padding-inline: 4rem;
+  /*
+   * Hovering one project row quiets the others, so the pointer's row reads
+   * as the subject. Pointer devices only; touch never hovers.
+   */
+  @media (hover: hover) {
+    .focus-rows > li {
+      transition: opacity 250ms ease-out;
+    }
+
+    .focus-rows:hover > li:not(:hover) {
+      opacity: 0.55;
     }
   }
 
-  @media (width >= 80rem) {
-    .band {
-      padding-inline: 6rem;
+  /*
+   * Scroll minimap (ScrollMap.tsx). `--progress` (0–1) is written from a
+   * scroll listener; the tracker box rides the ruler by it. A short linear
+   * transition smooths wheel steps without lagging behind the scroll.
+   */
+  .scroll-map-nav {
+    --progress: 0;
+    --tracker: 1.875rem;
+  }
+
+  .scroll-map {
+    position: relative;
+  }
+
+  .scroll-map-tracker {
+    position: absolute;
+    inset-block: -0.3125rem;
+    left: calc(var(--progress) * (100% - var(--tracker)));
+    width: var(--tracker);
+    border: 1px solid var(--color-heading);
+    border-radius: 0.375rem;
+    background-color: color-mix(in oklab, var(--color-bg) 70%, transparent);
+    transition: left 120ms linear;
+  }
+
+  /* Pinned to the tracker's position, shifted by the same fraction of its own
+     width so it never runs off either end of the ruler. */
+  /* While scrubbing, the tracker follows the pointer with no easing lag. */
+  .scroll-map-slider[data-dragging] {
+    cursor: grabbing;
+  }
+
+  .scroll-map-slider[data-dragging] .scroll-map-tracker,
+  .scroll-map-slider[data-dragging] ~ * .scroll-map-label {
+    transition: none;
+  }
+
+  .scroll-map-slider:hover .scroll-map-tracker {
+    border-color: var(--color-accent);
+  }
+
+  .scroll-map-label {
+    position: absolute;
+    left: calc(var(--progress) * 100%);
+    transform: translateX(calc(var(--progress) * -100%));
+    transition:
+      left 120ms linear,
+      transform 120ms linear;
+    animation: fade-in 250ms ease forwards;
+    opacity: 0;
+  }
+
+  /* The name types itself in, a letter at a time (Header.tsx sets --i). */
+  .letter {
+    animation: fade-in 250ms ease forwards;
+    animation-delay: calc(var(--i) * 28ms + 80ms);
+    opacity: 0;
+  }
+
+  /* The h1 fades in letter by letter instead of with the header's stagger. */
+  .enter-stagger > .no-enter {
+    animation: none;
+  }
+
+  @keyframes fade-in {
+    to {
+      opacity: 1;
     }
+  }
+
+  /* The disclosure marker is replaced by a rotating chevron. */
+  .disclosure > summary {
+    list-style: none;
+  }
+
+  .disclosure > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .disclosure[open] .disclosure-chevron {
+    transform: rotate(90deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root {
+  html {
     scroll-behavior: auto;
   }
 

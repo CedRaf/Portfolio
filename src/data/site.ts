@@ -41,6 +41,9 @@ export const site = {
 
   intro:
     'I build web applications and internal tools that remove manual work. Recently I automated an HR offboarding workflow during a software development internship, and published a hybrid RAG framework for financial data analysis on IEEE Xplore.',
+
+  // Restates experience.ts and the education entry; no new facts.
+  now: "Since graduating cum laude from the University of San Carlos in July 2026, I've been freelancing as part of a team on two client systems: an order and sales module for a rice wholesaler, and a real-time scoreboard for a pickleball court.",
 } as const
 
 export const taglineSegments: TaglineSegment[] = [
@@ -51,6 +54,7 @@ export const taglineSegments: TaglineSegment[] = [
 ]
 
 export const nav: NavItem[] = [
+  { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
   { label: 'Contact', href: '#contact' },

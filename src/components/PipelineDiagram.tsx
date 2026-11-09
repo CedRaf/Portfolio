@@ -42,10 +42,10 @@ function StageNode({ stage, first }: { stage: Stage; first: boolean }) {
     <li className={step}>
       {!first && <Arrow />}
       <div
-        className={`${node} px-4 py-3 @3xl:px-2.5 ${stage.emphasis ? 'border-heading' : 'border-heading/20'}`}
+        className={`${node} px-4 py-3 @3xl:px-2.5 ${stage.emphasis ? 'border-accent' : 'border-border'}`}
       >
-        <p className="text-[15.75px] leading-snug text-heading">{stage.name}</p>
-        {stage.note && <p className="mt-1 text-[13.65px]">{stage.note}</p>}
+        <p className="text-sm leading-snug text-heading">{stage.name}</p>
+        {stage.note && <p className="mt-1 text-xs">{stage.note}</p>}
       </div>
     </li>
   )
@@ -64,16 +64,16 @@ export function PipelineDiagram() {
 
         <li className={`${step} @3xl:flex-[1.5]`}>
           <Arrow />
-          <div className={`${node} border-dashed border-heading/30 p-2`}>
-            <p className="mb-2 text-[13.65px]">Retrievers</p>
+          <div className={`${node} border-dashed border-control p-2`}>
+            <p className="mb-2 text-xs">Retrievers</p>
             <ul className="flex list-none flex-col gap-1.5 p-0">
               {retrievers.map((retriever) => (
                 <li
                   key={retriever.name}
-                  className="flex items-baseline justify-between gap-2 rounded-md border border-heading/20 px-3 py-1.5 @3xl:px-2"
+                  className="flex items-baseline justify-between gap-2 rounded-md border border-border px-3 py-1.5 @3xl:px-2"
                 >
-                  <span className="text-[15.75px] text-heading">{retriever.name}</span>
-                  <span className="font-mono text-[13.65px]">{retriever.store}</span>
+                  <span className="text-sm text-heading">{retriever.name}</span>
+                  <span className="font-mono text-xs">{retriever.store}</span>
                 </li>
               ))}
             </ul>
@@ -85,7 +85,7 @@ export function PipelineDiagram() {
         ))}
       </ol>
 
-      <p className="max-w-[86ch] text-[15.75px] leading-relaxed">
+      <p className="text-sm leading-relaxed">
         Indexed from 200 SEC filings: text is chunked and embedded into Milvus as
         dense and sparse vectors, and structured financial statements are built
         into a Neo4j knowledge graph.

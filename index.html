@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
 
-    <!-- Preloaded: the display face paints the h1, so discovering it via the
-         stylesheet costs a round trip on first view. crossorigin is required
-         even same-origin — fonts are always fetched in CORS mode. -->
+    <!-- Applies a stored theme choice before first paint, so a visitor who
+         picked light or dark never sees the other flash in. With no stored
+         choice the page follows the OS via prefers-color-scheme. -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+      } catch (e) {}
+    </script>
+
+    <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)" />
+
+    <!-- Preloaded: Geist paints every line of text, including the h1.
+         crossorigin is required even same-origin — fonts are always fetched
+         in CORS mode. -->
     <link
       rel="preload"
-      href="/fonts/InstrumentSerif-Regular.woff2"
+      href="/fonts/Geist-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/BricolageGrotesque-SemiBold.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -19,20 +39,28 @@
     <title>Cedric Rafanan — Software Developer</title>
     <meta
       name="description"
-      content="Computer Science graduate based in Cebu City with hands-on experience in full-stack development and software automation. React, TypeScript, Python and C#."
+      content="Software developer in Cebu City who ships real systems: a company-wide offboarding rollout, two client systems in daily use, and a published RAG framework. React, TypeScript, Python and C#."
     />
     <meta name="author" content="Cedric Thomas Y. Rafanan" />
 
-    <!-- TODO: set these to the real domain once hosting is decided. -->
+    <!-- TODO: add og:url and og:image once the custom domain and preview image exist. -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Cedric Rafanan — Software Developer" />
     <meta
       property="og:description"
-      content="Computer Science graduate based in Cebu City with hands-on experience in full-stack development and software automation."
+      content="Software developer in Cebu City who ships real systems to real users."
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    <!--
+      THESIS: A standard developer portfolio at full craft: identity and both actions always in reach, proof of shipped systems first. Refuses gimmick, not convention.
+      OWN-WORLD: Cool white / deep graphite in two themes, one emerald accent that means "live" and "act", Geist throughout, hairline rows, chips for stacks.
+      STORY: A recruiter learns Ced ships real systems, sees them running with numbers, then emails or opens the résumé.
+      FIRST VIEWPORT: Portrait, name, role, warm one-line intro, Email me + View résumé; desktop keeps this column sticky beside the work.
+      FORM: canon (category standard, chosen by the user), seed 406dc24d.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -1,95 +1,94 @@
-import { useEffect, useState } from 'react'
-import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react'
-import { nav } from '../data/site'
+import type { CSSProperties } from 'react'
+import { Mail } from 'lucide-react'
+import { Button } from './Button'
+import { ResumeDialog } from './ResumeDialog'
+import { ThemeToggle } from './ThemeToggle'
+import { useActiveSection } from './useActiveSection'
+import { ScrollMap } from './ScrollMap'
+import { nav, site, socials, taglineSegments } from '../data/site'
 
-/** The hero is observed too, so scrolling back to the top clears the marker. */
-const sectionIds = ['top', ...nav.map((item) => item.href.slice(1))]
+const sectionIds = nav.map((item) => item.href.slice(1))
 
 /**
- * Tracks which section is under a narrow band across the middle of the
- * viewport. This is what the nav marker follows — on a long single-page scroll
- * the header is otherwise completely inert, and nothing tells the reader where
- * in the page they currently are.
+ * Who Ced is and the two things a recruiter can do about it. On a phone this
+ * is the first screen; from `lg:` it stays pinned beside the scrolling work,
+ * so the actions never leave view.
  */
-function useActiveSection() {
-  const [active, setActive] = useState<string | null>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting)
-        if (visible.length > 0) {
-          setActive(visible[visible.length - 1].target.id)
-        }
-      },
-      { rootMargin: '-45% 0px -50% 0px' },
-    )
-
-    for (const id of sectionIds) {
-      const element = document.getElementById(id)
-      if (element) observer.observe(element)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return active
-}
-
 export function Header() {
-  const reduceMotion = useReducedMotion()
-  const active = useActiveSection()
-  const { scrollYProgress } = useScroll()
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    restDelta: 0.001,
-  })
+  const active = useActiveSection(sectionIds)
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-bg/85 backdrop-blur-lg">
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
-
-      <div className="band flex items-center justify-end gap-6 py-4">
-        <nav aria-label="Primary">
-          <ul className="flex list-none items-center gap-5 p-0 lg:gap-10">
-            {nav.map((item) => {
-              const isActive = active === item.href.slice(1)
-              return (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    aria-current={isActive ? 'location' : undefined}
-                    className="relative inline-block py-3 text-[15.75px] text-heading no-underline transition-colors hover:text-accent lg:py-1.5"
-                  >
-                    {item.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-active"
-                        aria-hidden="true"
-                        transition={{
-                          duration: reduceMotion ? 0 : 0.35,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                        className="absolute inset-x-0 bottom-2 h-px bg-accent lg:bottom-0"
-                      />
-                    )}
-                  </a>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+    <header className="enter-stagger pt-8 pb-6 sm:pt-12 lg:sticky lg:top-0 lg:max-h-dvh lg:overflow-y-auto lg:py-14">
+      <div className="flex items-start justify-between gap-4">
+        <img
+          src="/images/profilepic-240.webp"
+          alt={`Portrait of ${site.shortName}`}
+          width={240}
+          height={240}
+          fetchPriority="high"
+          className="size-20 rounded-full object-cover ring-1 ring-border sm:size-24"
+        />
+        <ThemeToggle />
       </div>
 
-      {/* Scroll depth, drawn along the header's own bottom edge. */}
-      <motion.div
-        aria-hidden="true"
-        style={{ scaleX: reduceMotion ? scrollYProgress : smoothProgress }}
-        className="absolute inset-x-0 -bottom-px h-px origin-left bg-accent/60"
-      />
+      {/* Each letter fades in on its own; screen readers get the name once. */}
+      <h1 className="no-enter mt-6 font-display text-[2.75rem] leading-[1.02] font-semibold tracking-[-0.025em] text-balance text-heading sm:text-5xl">
+        <span className="sr-only">{site.shortName}</span>
+        <span aria-hidden="true">
+          {[...site.shortName].map((char, index) => (
+            <span key={index} className="letter" style={{ '--i': index } as CSSProperties}>
+              {char}
+            </span>
+          ))}
+        </span>
+      </h1>
+      <p className="mt-3 text-lg font-medium text-heading">
+        {site.role}
+        <span className="block font-normal text-subtle sm:inline">
+          <span className="hidden sm:inline"> · </span>
+          {site.location}
+        </span>
+      </p>
+
+      <p className="mt-5 max-w-[36ch] leading-relaxed text-pretty">
+        {taglineSegments.map((segment) =>
+          segment.emphasis ? (
+            <strong key={segment.text} className="font-medium text-heading">
+              {segment.text}
+            </strong>
+          ) : (
+            segment.text
+          ),
+        )}
+      </p>
+      <p className="mt-3 text-sm text-subtle">PhilNITS certified · IEEE Xplore author</p>
+
+      <div className="mt-7 flex flex-wrap items-center gap-3">
+        <Button href={`mailto:${site.email}`} variant="primary">
+          <Mail className="size-4" aria-hidden="true" />
+          Email me
+        </Button>
+        <ResumeDialog />
+        <ul className="flex items-center gap-1">
+          {socials.map(({ label, href, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="grid size-11 place-items-center rounded-lg text-subtle transition-colors hover:bg-surface hover:text-heading lg:size-10"
+              >
+                <Icon className="size-5" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+
+      <ScrollMap items={nav} active={active} />
     </header>
   )
 }

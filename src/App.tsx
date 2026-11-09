@@ -1,28 +1,35 @@
-import { MotionConfig } from 'motion/react'
 import { Header } from './components/Header'
-import { Hero } from './components/Hero'
 import { Footer } from './components/Footer'
-import { FloatingResume } from './components/FloatingResume'
-import { Experience } from './sections/Experience'
+import { About } from './sections/About'
 import { Projects } from './sections/Projects'
+import { Experience } from './sections/Experience'
 import { Contact } from './sections/Contact'
 
+/**
+ * Two columns from `lg:` — identity pinned on the left, the work scrolling on
+ * the right — and one column below it, identity first.
+ */
 function App() {
   return (
-    <MotionConfig reducedMotion="user">
-      <Header />
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
 
-      <main id="main" className="grow">
-        <Hero />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
+      <div className="mx-auto max-w-[78rem] px-6 sm:px-10 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16 lg:px-16 xl:gap-24">
+        <Header />
 
-      <Footer />
-
-      <FloatingResume />
-    </MotionConfig>
+        <div className="lg:py-20">
+          <main id="main" tabIndex={-1} className="outline-none">
+            <About />
+            <Projects />
+            <Experience />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </div>
+    </>
   )
 }
 
