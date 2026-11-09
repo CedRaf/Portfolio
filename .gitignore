@@ -25,3 +25,7 @@ inspo
 *.njsproj
 *.sln
 *.sw?
+
+# Impeccable local state (caches, decision-page logs)
+.impeccable/hook.cache.json
+.impeccable/questions/
