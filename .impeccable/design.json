@@ -1,0 +1,694 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T03:15:19.859Z",
+  "title": "Design System: Cedric Rafanan — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Warm Paper (light theme)",
+        "canonical": "#fafaf8",
+        "tonalRamp": [
+          "oklch(from #fafaf8 0.15 c h)",
+          "oklch(from #fafaf8 0.26 c h)",
+          "oklch(from #fafaf8 0.37 c h)",
+          "oklch(from #fafaf8 0.48 c h)",
+          "oklch(from #fafaf8 0.59 c h)",
+          "oklch(from #fafaf8 0.7 c h)",
+          "oklch(from #fafaf8 0.82 c h)",
+          "oklch(from #fafaf8 0.95 c h)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Bench (light theme)",
+        "canonical": "#f1f0eb",
+        "tonalRamp": [
+          "oklch(from #f1f0eb 0.15 c h)",
+          "oklch(from #f1f0eb 0.26 c h)",
+          "oklch(from #f1f0eb 0.37 c h)",
+          "oklch(from #f1f0eb 0.48 c h)",
+          "oklch(from #f1f0eb 0.59 c h)",
+          "oklch(from #f1f0eb 0.7 c h)",
+          "oklch(from #f1f0eb 0.82 c h)",
+          "oklch(from #f1f0eb 0.95 c h)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline (light theme)",
+        "canonical": "#e6e4de",
+        "tonalRamp": [
+          "oklch(from #e6e4de 0.15 c h)",
+          "oklch(from #e6e4de 0.26 c h)",
+          "oklch(from #e6e4de 0.37 c h)",
+          "oklch(from #e6e4de 0.48 c h)",
+          "oklch(from #e6e4de 0.59 c h)",
+          "oklch(from #e6e4de 0.7 c h)",
+          "oklch(from #e6e4de 0.82 c h)",
+          "oklch(from #e6e4de 0.95 c h)"
+        ]
+      },
+      "control": {
+        "role": "neutral",
+        "displayName": "Control (light theme)",
+        "canonical": "#878279",
+        "tonalRamp": [
+          "oklch(from #878279 0.15 c h)",
+          "oklch(from #878279 0.26 c h)",
+          "oklch(from #878279 0.37 c h)",
+          "oklch(from #878279 0.48 c h)",
+          "oklch(from #878279 0.59 c h)",
+          "oklch(from #878279 0.7 c h)",
+          "oklch(from #878279 0.82 c h)",
+          "oklch(from #878279 0.95 c h)"
+        ]
+      },
+      "body": {
+        "role": "neutral",
+        "displayName": "Body (light theme)",
+        "canonical": "#47433d",
+        "tonalRamp": [
+          "oklch(from #47433d 0.15 c h)",
+          "oklch(from #47433d 0.26 c h)",
+          "oklch(from #47433d 0.37 c h)",
+          "oklch(from #47433d 0.48 c h)",
+          "oklch(from #47433d 0.59 c h)",
+          "oklch(from #47433d 0.7 c h)",
+          "oklch(from #47433d 0.82 c h)",
+          "oklch(from #47433d 0.95 c h)"
+        ]
+      },
+      "subtle": {
+        "role": "neutral",
+        "displayName": "Subtle (light theme)",
+        "canonical": "#67625a",
+        "tonalRamp": [
+          "oklch(from #67625a 0.15 c h)",
+          "oklch(from #67625a 0.26 c h)",
+          "oklch(from #67625a 0.37 c h)",
+          "oklch(from #67625a 0.48 c h)",
+          "oklch(from #67625a 0.59 c h)",
+          "oklch(from #67625a 0.7 c h)",
+          "oklch(from #67625a 0.82 c h)",
+          "oklch(from #67625a 0.95 c h)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink (light theme)",
+        "canonical": "#1a1918",
+        "tonalRamp": [
+          "oklch(from #1a1918 0.15 c h)",
+          "oklch(from #1a1918 0.26 c h)",
+          "oklch(from #1a1918 0.37 c h)",
+          "oklch(from #1a1918 0.48 c h)",
+          "oklch(from #1a1918 0.59 c h)",
+          "oklch(from #1a1918 0.7 c h)",
+          "oklch(from #1a1918 0.82 c h)",
+          "oklch(from #1a1918 0.95 c h)"
+        ]
+      },
+      "ochre": {
+        "role": "primary",
+        "displayName": "Ochre Ink, the accent token (light theme)",
+        "canonical": "#755600",
+        "tonalRamp": [
+          "oklch(from #755600 0.15 c h)",
+          "oklch(from #755600 0.26 c h)",
+          "oklch(from #755600 0.37 c h)",
+          "oklch(from #755600 0.48 c h)",
+          "oklch(from #755600 0.59 c h)",
+          "oklch(from #755600 0.7 c h)",
+          "oklch(from #755600 0.82 c h)",
+          "oklch(from #755600 0.95 c h)"
+        ]
+      },
+      "highlight": {
+        "role": "primary",
+        "displayName": "Highlighter Yellow (light theme)",
+        "canonical": "#ffe45b",
+        "tonalRamp": [
+          "oklch(from #ffe45b 0.15 c h)",
+          "oklch(from #ffe45b 0.26 c h)",
+          "oklch(from #ffe45b 0.37 c h)",
+          "oklch(from #ffe45b 0.48 c h)",
+          "oklch(from #ffe45b 0.59 c h)",
+          "oklch(from #ffe45b 0.7 c h)",
+          "oklch(from #ffe45b 0.82 c h)",
+          "oklch(from #ffe45b 0.95 c h)"
+        ]
+      },
+      "on-highlight": {
+        "role": "primary",
+        "displayName": "Ink on Yellow (light theme)",
+        "canonical": "#1a1918",
+        "tonalRamp": [
+          "oklch(from #1a1918 0.15 c h)",
+          "oklch(from #1a1918 0.26 c h)",
+          "oklch(from #1a1918 0.37 c h)",
+          "oklch(from #1a1918 0.48 c h)",
+          "oklch(from #1a1918 0.59 c h)",
+          "oklch(from #1a1918 0.7 c h)",
+          "oklch(from #1a1918 0.82 c h)",
+          "oklch(from #1a1918 0.95 c h)"
+        ]
+      },
+      "chip": {
+        "role": "secondary",
+        "displayName": "Stack Chip (light theme)",
+        "canonical": "#fcf2c1",
+        "tonalRamp": [
+          "oklch(from #fcf2c1 0.15 c h)",
+          "oklch(from #fcf2c1 0.26 c h)",
+          "oklch(from #fcf2c1 0.37 c h)",
+          "oklch(from #fcf2c1 0.48 c h)",
+          "oklch(from #fcf2c1 0.59 c h)",
+          "oklch(from #fcf2c1 0.7 c h)",
+          "oklch(from #fcf2c1 0.82 c h)",
+          "oklch(from #fcf2c1 0.95 c h)"
+        ]
+      },
+      "on-chip": {
+        "role": "secondary",
+        "displayName": "Stack Chip text (light theme)",
+        "canonical": "#1a1918",
+        "tonalRamp": [
+          "oklch(from #1a1918 0.15 c h)",
+          "oklch(from #1a1918 0.26 c h)",
+          "oklch(from #1a1918 0.37 c h)",
+          "oklch(from #1a1918 0.48 c h)",
+          "oklch(from #1a1918 0.59 c h)",
+          "oklch(from #1a1918 0.7 c h)",
+          "oklch(from #1a1918 0.82 c h)",
+          "oklch(from #1a1918 0.95 c h)"
+        ]
+      },
+      "live": {
+        "role": "tertiary",
+        "displayName": "Running Green (light theme)",
+        "canonical": "#0a7650",
+        "tonalRamp": [
+          "oklch(from #0a7650 0.15 c h)",
+          "oklch(from #0a7650 0.26 c h)",
+          "oklch(from #0a7650 0.37 c h)",
+          "oklch(from #0a7650 0.48 c h)",
+          "oklch(from #0a7650 0.59 c h)",
+          "oklch(from #0a7650 0.7 c h)",
+          "oklch(from #0a7650 0.82 c h)",
+          "oklch(from #0a7650 0.95 c h)"
+        ]
+      },
+      "canvas-dark": {
+        "role": "neutral",
+        "displayName": "Warm Paper (dark theme)",
+        "canonical": "#1a1918",
+        "tonalRamp": [
+          "oklch(from #1a1918 0.15 c h)",
+          "oklch(from #1a1918 0.26 c h)",
+          "oklch(from #1a1918 0.37 c h)",
+          "oklch(from #1a1918 0.48 c h)",
+          "oklch(from #1a1918 0.59 c h)",
+          "oklch(from #1a1918 0.7 c h)",
+          "oklch(from #1a1918 0.82 c h)",
+          "oklch(from #1a1918 0.95 c h)"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Bench (dark theme)",
+        "canonical": "#242321",
+        "tonalRamp": [
+          "oklch(from #242321 0.15 c h)",
+          "oklch(from #242321 0.26 c h)",
+          "oklch(from #242321 0.37 c h)",
+          "oklch(from #242321 0.48 c h)",
+          "oklch(from #242321 0.59 c h)",
+          "oklch(from #242321 0.7 c h)",
+          "oklch(from #242321 0.82 c h)",
+          "oklch(from #242321 0.95 c h)"
+        ]
+      },
+      "hairline-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (dark theme)",
+        "canonical": "#2e2c29",
+        "tonalRamp": [
+          "oklch(from #2e2c29 0.15 c h)",
+          "oklch(from #2e2c29 0.26 c h)",
+          "oklch(from #2e2c29 0.37 c h)",
+          "oklch(from #2e2c29 0.48 c h)",
+          "oklch(from #2e2c29 0.59 c h)",
+          "oklch(from #2e2c29 0.7 c h)",
+          "oklch(from #2e2c29 0.82 c h)",
+          "oklch(from #2e2c29 0.95 c h)"
+        ]
+      },
+      "control-dark": {
+        "role": "neutral",
+        "displayName": "Control (dark theme)",
+        "canonical": "#7a756c",
+        "tonalRamp": [
+          "oklch(from #7a756c 0.15 c h)",
+          "oklch(from #7a756c 0.26 c h)",
+          "oklch(from #7a756c 0.37 c h)",
+          "oklch(from #7a756c 0.48 c h)",
+          "oklch(from #7a756c 0.59 c h)",
+          "oklch(from #7a756c 0.7 c h)",
+          "oklch(from #7a756c 0.82 c h)",
+          "oklch(from #7a756c 0.95 c h)"
+        ]
+      },
+      "body-dark": {
+        "role": "neutral",
+        "displayName": "Body (dark theme)",
+        "canonical": "#aba69e",
+        "tonalRamp": [
+          "oklch(from #aba69e 0.15 c h)",
+          "oklch(from #aba69e 0.26 c h)",
+          "oklch(from #aba69e 0.37 c h)",
+          "oklch(from #aba69e 0.48 c h)",
+          "oklch(from #aba69e 0.59 c h)",
+          "oklch(from #aba69e 0.7 c h)",
+          "oklch(from #aba69e 0.82 c h)",
+          "oklch(from #aba69e 0.95 c h)"
+        ]
+      },
+      "subtle-dark": {
+        "role": "neutral",
+        "displayName": "Subtle (dark theme)",
+        "canonical": "#8f8a82",
+        "tonalRamp": [
+          "oklch(from #8f8a82 0.15 c h)",
+          "oklch(from #8f8a82 0.26 c h)",
+          "oklch(from #8f8a82 0.37 c h)",
+          "oklch(from #8f8a82 0.48 c h)",
+          "oklch(from #8f8a82 0.59 c h)",
+          "oklch(from #8f8a82 0.7 c h)",
+          "oklch(from #8f8a82 0.82 c h)",
+          "oklch(from #8f8a82 0.95 c h)"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Ink (dark theme)",
+        "canonical": "#f5f3ef",
+        "tonalRamp": [
+          "oklch(from #f5f3ef 0.15 c h)",
+          "oklch(from #f5f3ef 0.26 c h)",
+          "oklch(from #f5f3ef 0.37 c h)",
+          "oklch(from #f5f3ef 0.48 c h)",
+          "oklch(from #f5f3ef 0.59 c h)",
+          "oklch(from #f5f3ef 0.7 c h)",
+          "oklch(from #f5f3ef 0.82 c h)",
+          "oklch(from #f5f3ef 0.95 c h)"
+        ]
+      },
+      "ochre-dark": {
+        "role": "primary",
+        "displayName": "Accent yellow as text (dark theme)",
+        "canonical": "#ffe45b",
+        "tonalRamp": [
+          "oklch(from #ffe45b 0.15 c h)",
+          "oklch(from #ffe45b 0.26 c h)",
+          "oklch(from #ffe45b 0.37 c h)",
+          "oklch(from #ffe45b 0.48 c h)",
+          "oklch(from #ffe45b 0.59 c h)",
+          "oklch(from #ffe45b 0.7 c h)",
+          "oklch(from #ffe45b 0.82 c h)",
+          "oklch(from #ffe45b 0.95 c h)"
+        ]
+      },
+      "highlight-dark": {
+        "role": "primary",
+        "displayName": "Highlighter Yellow (dark theme)",
+        "canonical": "#ffe45b",
+        "tonalRamp": [
+          "oklch(from #ffe45b 0.15 c h)",
+          "oklch(from #ffe45b 0.26 c h)",
+          "oklch(from #ffe45b 0.37 c h)",
+          "oklch(from #ffe45b 0.48 c h)",
+          "oklch(from #ffe45b 0.59 c h)",
+          "oklch(from #ffe45b 0.7 c h)",
+          "oklch(from #ffe45b 0.82 c h)",
+          "oklch(from #ffe45b 0.95 c h)"
+        ]
+      },
+      "on-highlight-dark": {
+        "role": "primary",
+        "displayName": "Ink on Yellow (dark theme)",
+        "canonical": "#1a1918",
+        "tonalRamp": [
+          "oklch(from #1a1918 0.15 c h)",
+          "oklch(from #1a1918 0.26 c h)",
+          "oklch(from #1a1918 0.37 c h)",
+          "oklch(from #1a1918 0.48 c h)",
+          "oklch(from #1a1918 0.59 c h)",
+          "oklch(from #1a1918 0.7 c h)",
+          "oklch(from #1a1918 0.82 c h)",
+          "oklch(from #1a1918 0.95 c h)"
+        ]
+      },
+      "chip-dark": {
+        "role": "secondary",
+        "displayName": "Stack Chip (dark theme)",
+        "canonical": "#353120",
+        "tonalRamp": [
+          "oklch(from #353120 0.15 c h)",
+          "oklch(from #353120 0.26 c h)",
+          "oklch(from #353120 0.37 c h)",
+          "oklch(from #353120 0.48 c h)",
+          "oklch(from #353120 0.59 c h)",
+          "oklch(from #353120 0.7 c h)",
+          "oklch(from #353120 0.82 c h)",
+          "oklch(from #353120 0.95 c h)"
+        ]
+      },
+      "on-chip-dark": {
+        "role": "secondary",
+        "displayName": "Stack Chip text (dark theme)",
+        "canonical": "#ffe45b",
+        "tonalRamp": [
+          "oklch(from #ffe45b 0.15 c h)",
+          "oklch(from #ffe45b 0.26 c h)",
+          "oklch(from #ffe45b 0.37 c h)",
+          "oklch(from #ffe45b 0.48 c h)",
+          "oklch(from #ffe45b 0.59 c h)",
+          "oklch(from #ffe45b 0.7 c h)",
+          "oklch(from #ffe45b 0.82 c h)",
+          "oklch(from #ffe45b 0.95 c h)"
+        ]
+      },
+      "live-dark": {
+        "role": "tertiary",
+        "displayName": "Running Green (dark theme)",
+        "canonical": "#4fd8a0",
+        "tonalRamp": [
+          "oklch(from #4fd8a0 0.15 c h)",
+          "oklch(from #4fd8a0 0.26 c h)",
+          "oklch(from #4fd8a0 0.37 c h)",
+          "oklch(from #4fd8a0 0.48 c h)",
+          "oklch(from #4fd8a0 0.59 c h)",
+          "oklch(from #4fd8a0 0.7 c h)",
+          "oklch(from #4fd8a0 0.82 c h)",
+          "oklch(from #4fd8a0 0.95 c h)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the header; the only h1, which fades in letter by letter on first load. Bricolage 600, 2.75rem → 3rem at sm."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section h2s, plain ink. Bricolage 600, 1.5rem → 1.875rem at lg."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Featured project titles. Bricolage 600, 1.25rem → 1.375rem at sm. (Contact email: Bricolage 600, 1.375rem → 1.875rem at sm.)"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Intro and project prose in Geist, capped at 36–62ch."
+      },
+      "body-sm": {
+        "displayName": "Body small",
+        "purpose": "Bullets, result labels, secondary prose, button labels."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Dates, meta lines, footer; tabular-nums in columns."
+      },
+      "chip": {
+        "displayName": "Chip",
+        "purpose": "Technology names in a stack."
+      }
+    },
+    "shadows": [
+      {
+        "name": "overlay-control",
+        "value": "0 4px 12px -4px rgb(0 0 0 / 0.3)",
+        "purpose": "Carousel arrows floating over an image."
+      },
+      {
+        "name": "dialog",
+        "value": "0 24px 60px -20px rgb(0 0 0 / 0.45)",
+        "purpose": "The résumé dialog."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-expo-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The house curve: entrance, row expansion, thumbnail scale, copy morph, dialogs."
+      },
+      {
+        "name": "enter-stagger",
+        "value": "700ms ease-expo-out; from opacity 0, blur(6px), translateY(6px); 50ms stagger capped at 350ms",
+        "purpose": "First-load resolve of the header's children; once only."
+      },
+      {
+        "name": "enter-late",
+        "value": "700ms ease-expo-out, 300ms delay; same keyframes",
+        "purpose": "About section entrance after the header."
+      },
+      {
+        "name": "name-letters",
+        "value": "fade-in 250ms ease per letter; delay calc(var(--i) * 28ms + 80ms); `.letter` spans with --i set per index",
+        "purpose": "The h1 types itself in on first load; the header resolves in its 50ms stagger around it."
+      },
+      {
+        "name": "color-transition",
+        "value": "150ms; background-color, border-color, color, transform",
+        "purpose": "Buttons, links and icon buttons on hover."
+      },
+      {
+        "name": "button-press",
+        "value": ":active scale(0.97), 150ms",
+        "purpose": "Every button and the copy-email button."
+      },
+      {
+        "name": "focus-rows",
+        "value": "250ms ease-out; sibling rows to opacity 0.55",
+        "purpose": "Hovering a project row quiets the others; hover-capable devices only."
+      },
+      {
+        "name": "thumb-scale",
+        "value": "500ms ease-expo-out; scale(1.04), motion-safe",
+        "purpose": "Project thumbnail on row hover."
+      },
+      {
+        "name": "row-expand",
+        "value": "300ms ease-expo-out; grid-template-rows 0fr → 1fr; content opacity + blur 300ms with 100ms delay",
+        "purpose": "Project row disclosure. Every row starts collapsed; following #client-work (or arriving with it in the URL) opens the first client project."
+      },
+      {
+        "name": "scroll-map-tracker",
+        "value": "left 120ms linear, driven by --progress (0–1) written once per animation frame",
+        "purpose": "The outlined tracker riding the 28-tick ruler in the desktop scroll minimap; never through React state."
+      },
+      {
+        "name": "scroll-map-label",
+        "value": "fade-in 250ms ease on each change; left/transform 120ms linear",
+        "purpose": "The current section label follows the tracker, clamped to the ruler ends, and fades in afresh when the section changes."
+      },
+      {
+        "name": "copy-morph",
+        "value": "300ms ease-expo-out; opacity, blur, scale 0.5 ↔ 1",
+        "purpose": "Copy icon cross-fades to a check for two seconds."
+      },
+      {
+        "name": "carousel-fade",
+        "value": "300ms; opacity, visibility",
+        "purpose": "Manual slide cross-fade."
+      },
+      {
+        "name": "dialog-in",
+        "value": "220ms ease-expo-out; from opacity 0, scale(0.97)",
+        "purpose": "Lightbox and résumé dialog entrance; backdrop fades 220ms ease-out."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all durations 0.01ms; scroll-behavior auto",
+        "purpose": "prefers-reduced-motion collapses every transition and animation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "lg",
+        "value": "64rem"
+      },
+      {
+        "name": "xl",
+        "value": "80rem"
+      }
+    ],
+    "themes": {
+      "mechanism": "Light tokens in @theme; dark overrides under prefers-color-scheme: dark (unless data-theme='light') and under :root[data-theme='dark']. The header toggle sets data-theme and localStorage 'theme'; an inline script in index.html re-applies it before first paint."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one yellow-fill action per group (\"Email me\"); presses to 97%.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Email me</a>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:8px;font:500 15px/1 Geist,ui-sans-serif,system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color 150ms,border-color 150ms,color 150ms,transform 150ms;background:var(--color-highlight);color:var(--color-highlight-fg);border:0}.ds-btn-primary:hover{background:var(--color-heading);color:var(--color-bg)}.ds-btn-primary:active{transform:scale(.97)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:6px;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline action with a 3:1 control border (\"View résumé\" in the header).",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">View résumé</button>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:8px;font:500 15px/1 Geist,ui-sans-serif,system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color 150ms,border-color 150ms,color 150ms,transform 150ms;background:transparent;color:var(--color-heading);border:1px solid var(--color-control)}.ds-btn-secondary:hover{border-color:var(--color-heading);background:var(--color-surface)}.ds-btn-secondary:active{transform:scale(.97)}.ds-btn-secondary:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:6px;}"
+    },
+    {
+      "name": "Inverse Button",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "Ink fill with yellow text, for use on the yellow Contact card.",
+      "html": "<div class=\"ds-on-yellow\"><button class=\"ds-btn-inverse\" type=\"button\">View résumé</button></div>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-on-yellow{background:var(--color-highlight);padding:24px;border-radius:16px}.ds-btn-inverse{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:8px;font:500 15px/1 Geist,ui-sans-serif,system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color 150ms,border-color 150ms,color 150ms,transform 150ms;background:var(--color-highlight-fg);color:var(--color-highlight);border:0}.ds-btn-inverse:hover{background:color-mix(in oklab,var(--color-highlight-fg) 85%,transparent)}.ds-btn-inverse:active{transform:scale(.97)}.ds-btn-inverse:focus-visible{outline:2px solid var(--color-highlight-fg);outline-offset:3px;border-radius:6px}"
+    },
+    {
+      "name": "Copy Email Button",
+      "kind": "button",
+      "refersTo": "button-on-highlight-outline",
+      "description": "Ink-outline button on yellow; the copy icon blurs into a check and the label reads \"Copied\".",
+      "html": "<div class=\"ds-on-yellow\"><button class=\"ds-btn-copy\" type=\"button\"><span class=\"ds-icons\"><svg class=\"ds-i-copy\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\"/><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"/></svg><svg class=\"ds-i-check\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg></span><span>Copy email</span></button></div>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-on-yellow{background:var(--color-highlight);padding:24px;border-radius:16px}.ds-btn-copy{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:8px;font:500 15px/1 Geist,ui-sans-serif,system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color 150ms,border-color 150ms,color 150ms,transform 150ms;background:transparent;color:var(--color-highlight-fg);border:1px solid color-mix(in oklab,var(--color-highlight-fg) 60%,transparent)}.ds-btn-copy:hover{border-color:var(--color-highlight-fg);background:color-mix(in oklab,var(--color-highlight-fg) 5%,transparent)}.ds-btn-copy:active{transform:scale(.97)}.ds-btn-copy:focus-visible{outline:2px solid var(--color-highlight-fg);outline-offset:3px;border-radius:6px}.ds-icons{display:grid}.ds-icons svg{grid-area:1/1;transition:opacity 300ms,filter 300ms,transform 300ms cubic-bezier(.16,1,.3,1)}.ds-i-check{opacity:0;filter:blur(4px);transform:scale(.5)}.ds-btn-copy:focus-visible .ds-i-copy{opacity:0;filter:blur(4px);transform:scale(.5)}.ds-btn-copy:focus-visible .ds-i-check{opacity:1;filter:none;transform:none}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "44px square ghost button for the theme toggle and social links.",
+      "html": "<button class=\"ds-icon-btn\" type=\"button\" aria-label=\"Switch to dark theme\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"4\"/></svg></button>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-icon-btn{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:8px;background:transparent;color:var(--color-subtle);cursor:pointer;transition:background-color 150ms,color 150ms}.ds-icon-btn:hover{background:var(--color-surface);color:var(--color-heading)}.ds-icon-btn:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:6px;}"
+    },
+    {
+      "name": "Stack Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Static technology label on a featured project.",
+      "html": "<span class=\"ds-chip\">TypeScript</span>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-chip{display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:var(--color-chip);color:var(--color-chip-fg);font:500 12px/1 Geist,ui-sans-serif,system-ui,sans-serif}"
+    },
+    {
+      "name": "Section Nav (scroll minimap)",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Desktop scroll minimap: 28 hairline ticks, an outlined tracker riding them by --progress (120ms linear), the current section label following and fading in, real links in a wrapping row below.",
+      "html": "<nav class=\"ds-map\" aria-label=\"Sections\"><div class=\"ds-ruler\" aria-hidden=\"true\"><div class=\"ds-ticks\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span class=\"ds-tracker\"></span></div><div class=\"ds-label-row\" aria-hidden=\"true\"><span class=\"ds-label\">Projects</span></div><ul class=\"ds-links\"><li><a href=\"#\">About</a></li><li><a href=\"#\" aria-current=\"true\">Projects</a></li><li><a href=\"#\">Experience</a></li><li><a href=\"#\">Contact</a></li></ul></nav>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-map{--progress:.33;--tracker:30px;margin-top:48px;border-top:1px solid var(--color-border);padding-top:24px}.ds-map:has(li:nth-child(1) a:hover){--progress:0}.ds-map:has(li:nth-child(3) a:hover){--progress:.66}.ds-map:has(li:nth-child(4) a:hover){--progress:1}.ds-ruler{position:relative}.ds-ticks{display:flex;justify-content:space-between}.ds-ticks span{width:1px;height:18px;background:color-mix(in oklab,var(--color-control) 60%,transparent)}.ds-tracker{position:absolute;inset-block:-5px;left:calc(var(--progress) * (100% - var(--tracker)));width:var(--tracker);border:1px solid var(--color-heading);border-radius:6px;background:color-mix(in oklab,var(--color-bg) 70%,transparent);transition:left 120ms linear}.ds-label-row{position:relative;margin-top:10px;height:20px}.ds-label{position:absolute;left:calc(var(--progress) * 100%);transform:translateX(calc(var(--progress) * -100%));transition:left 120ms linear,transform 120ms linear;font:400 12px/20px Geist,ui-sans-serif,system-ui,sans-serif;white-space:nowrap;color:var(--color-subtle);opacity:0;animation:ds-fade-in 250ms ease forwards}@keyframes ds-fade-in{to{opacity:1}}.ds-links{display:flex;flex-wrap:wrap;gap:4px 20px;margin:16px 0 0;padding:0;list-style:none}.ds-links a{display:inline-flex;align-items:center;height:40px;font:500 15px/1 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-subtle);text-decoration:none;transition:color 200ms}.ds-links a:hover,.ds-links a[aria-current]{color:var(--color-heading)}.ds-links a:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:6px}@media (prefers-reduced-motion:reduce){.ds-tracker,.ds-label{transition:none;animation-duration:.01ms}}"
+    },
+    {
+      "name": "Name Entrance",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "The h1 types itself in: each letter fades in over 250ms, 28ms after the previous, starting at 80ms; a visually hidden copy gives screen readers the name once.",
+      "html": "<h1 class=\"ds-name\"><span class=\"ds-sr\">Cedric Rafanan</span><span aria-hidden=\"true\"><span class=\"ds-letter\" style=\"--i:0\">C</span><span class=\"ds-letter\" style=\"--i:1\">e</span><span class=\"ds-letter\" style=\"--i:2\">d</span><span class=\"ds-letter\" style=\"--i:3\">r</span><span class=\"ds-letter\" style=\"--i:4\">i</span><span class=\"ds-letter\" style=\"--i:5\">c</span><span class=\"ds-letter\" style=\"--i:6\">&nbsp;</span><span class=\"ds-letter\" style=\"--i:7\">R</span><span class=\"ds-letter\" style=\"--i:8\">a</span><span class=\"ds-letter\" style=\"--i:9\">f</span><span class=\"ds-letter\" style=\"--i:10\">a</span><span class=\"ds-letter\" style=\"--i:11\">n</span><span class=\"ds-letter\" style=\"--i:12\">a</span><span class=\"ds-letter\" style=\"--i:13\">n</span></span></h1>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-name{margin:0;font:600 44px/1.02 'Bricolage Grotesque',Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.025em;text-wrap:balance;color:var(--color-heading)}.ds-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.ds-letter{opacity:0;animation:ds-letter-in 250ms ease forwards;animation-delay:calc(var(--i) * 28ms + 80ms)}@keyframes ds-letter-in{to{opacity:1}}@media (prefers-reduced-motion:reduce){.ds-letter{animation-duration:.01ms;animation-delay:0ms}}"
+    },
+    {
+      "name": "Contact Card",
+      "kind": "card",
+      "refersTo": "contact-card",
+      "description": "The one full yellow surface: ink text, the oversized email, ink focus rings.",
+      "html": "<div class=\"ds-contact\"><p>Open to full-time roles and freelance work.</p><a class=\"ds-email\" href=\"#\">hello@example.com</a></div>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-contact{background:var(--color-highlight);color:var(--color-highlight-fg);border-radius:16px;padding:28px}.ds-contact p{margin:0;max-width:46ch;line-height:1.625;color:color-mix(in oklab,var(--color-highlight-fg) 80%,transparent)}.ds-email{display:inline-block;margin-top:24px;font:600 22px/1.3 'Bricolage Grotesque',Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.02em;color:var(--color-highlight-fg);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.25em;text-decoration-color:color-mix(in oklab,var(--color-highlight-fg) 35%,transparent);transition:text-decoration-color 150ms}.ds-email:hover{text-decoration-color:var(--color-highlight-fg)}.ds-email:focus-visible{outline:2px solid var(--color-highlight-fg);outline-offset:3px;border-radius:6px}"
+    },
+    {
+      "name": "Results List",
+      "kind": "custom",
+      "refersTo": "results",
+      "description": "Measured results between hairlines: number first, tabular figures.",
+      "html": "<dl class=\"ds-results\"><dt>53% → 68%</dt><dd>Answer correctness</dd><dt>97.5%</dt><dd>Routing accuracy</dd></dl>",
+      "css": ":host{--color-bg:#fafaf8;--color-surface:#f1f0eb;--color-border:#e6e4de;--color-control:#878279;--color-fg:#47433d;--color-subtle:#67625a;--color-heading:#1a1918;--color-accent:#755600;--color-highlight:#ffe45b;--color-highlight-fg:#1a1918;--color-chip:#fcf2c1;--color-chip-fg:#1a1918;--color-live:#0a7650;font-family:Geist,ui-sans-serif,system-ui,sans-serif}.ds-results{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0;padding:16px 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}.ds-results dt{font-weight:600;color:var(--color-heading);text-align:right;font-variant-numeric:tabular-nums}.ds-results dd{margin:0;font-size:15px;color:var(--color-fg)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Marked-Up Workbench",
+    "overview": "The well-kept developer portfolio, with its yellow back. v3 began as the category standard at full finish; the user found it too plain, so this pass keeps v3's spacing, pinned layout and row grammar and brings back v2's character: the v2 yellow (`#ffe45b`), bolder surfaces, a display face for headings. Warmth is borrowed from joshwcomeau.com but turned well down, and the interaction finish comes from rauno.me: small, quick, physical CSS responses rather than spectacle. Everything still serves a recruiter on a phone deciding in ten seconds: identity and both actions (email, résumé) on the first screen, then shipped systems with their numbers.\n\nDesktop is two columns: identity pinned on the left, the work scrolling on the right; below `lg` it is one column, identity first. Warm off-white or warm charcoal carry the page in two themes. Yellow does two jobs, each with its own token: a fill for the one primary action and the Contact card, and (as deep ochre in light mode) text for links and focus. Headings are plain ink in Bricolage; the highlighter swipe was tried and removed at the user's request. Structure is still hairline rows and a date column, not cards; the Contact card is the single deliberate exception.\n\nMotion is CSS only, with no animation library: a once-only resolve on first load with the name fading in letter by letter, a rauno.me-style scroll minimap in the desktop nav, rows that quiet their siblings on hover, buttons that press, and an email-copy morph. Reduced motion collapses all of it.",
+    "keyCharacteristics": [
+      "Light and dark themes, following the OS, with a header toggle persisted in localStorage and applied before first paint.",
+      "One yellow family split into two roles: fill (`highlight`) and text (`accent`, ochre in light).",
+      "Two self-hosted faces: Bricolage Grotesque SemiBold for display, Geist variable for everything else.",
+      "Hairline-divided rows and a fixed date column; one full-colour card closes the page.",
+      "Flat: depth only on overlays that genuinely float.",
+      "CSS-only micro-interactions; ~74 kB gzip JS total."
+    ],
+    "rules": [
+      {
+        "name": "The Two-Yellows Rule",
+        "body": "Yellow as fill is `highlight`, yellow as text is `accent`. No yellow behind text: the highlighter swipe was removed. Never put `highlight` itself on text against the light canvas; use `accent`, which is ochre there.",
+        "section": "colors"
+      },
+      {
+        "name": "The One-Yellow-Surface Rule",
+        "body": "The Contact card is the only full yellow surface; the primary button is the only other yellow fill. Don't tint another section, card or \"featured\" item yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Border Rule",
+        "body": "A border is either a hairline (decoration, `border`) or a control edge (`control`, ≥3:1). On a yellow fill the control edge is ink at 60% (4.25:1).",
+        "section": "colors"
+      },
+      {
+        "name": "The One-Token-Two-Values Rule",
+        "body": "New colours are added as a light value in `@theme` and a dark override in both dark blocks (OS-preference and `data-theme='dark'`). No component-level hex, no stock Tailwind palette; the dialog scrims (`black/60`, `black/80`) are the only exception.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display-Is-Rare Rule",
+        "body": "Bricolage sets only the h1, section h2s, featured project titles and the Contact email. Everything else, including buttons, nav and sub-headings, is Geist. A third family needs the user's sign-off.",
+        "section": "typography"
+      },
+      {
+        "name": "The Negative-Tracking-Scales-With-Size Rule",
+        "body": "Tracking tightens only as size grows: -0.025em on the name, -0.02em on the email, -0.015em on h2s and project titles, zero for body and labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Pinned-Identity Rule",
+        "body": "On desktop the name, both actions and the nav never leave view; on mobile they are the first screen. New sections go in the right column, never into the header.",
+        "section": "layout"
+      },
+      {
+        "name": "The Same-Row Rule",
+        "body": "Any dated list uses the date-column row (`9.5rem` + content). Don't invent a new list shape for a new kind of entry.",
+        "section": "layout"
+      },
+      {
+        "name": "The Floats-Only Rule",
+        "body": "A shadow means \"this is above the page\". Cards, rows, chips and buttons at rest carry none, including the Contact card.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do define every colour as a token with a light value and a dark override; check both themes for contrast (body ≥4.5:1, control edges ≥3:1) on the composited background, including on the yellow card.",
+      "Do use `accent` for yellow text and `highlight` for yellow fills; text on a yellow fill is `on-highlight` (ink).",
+      "Do switch focus rings to ink inside any yellow surface.",
+      "Do keep touch targets at 2.75rem (44px) below `lg` and 2.5rem (40px) from `lg`.",
+      "Do separate content with 1px hairlines and the date-column row; signal importance with order, size or a label.",
+      "Do put new motion in CSS on opacity, transform, filter or colour, gate hover effects to hover-capable devices, and make sure the `prefers-reduced-motion` reset covers it.",
+      "Do lead project results with the number, in tabular figures."
+    ],
+    "donts": [
+      "Don't add a JS animation library or JS-driven animation; all motion is CSS by decision.",
+      "Don't add per-section scroll reveals; the entrance runs once, on the header and About only.",
+      "Don't set body copy, buttons or nav in Bricolage, or add a third web font.",
+      "Don't add a second yellow surface or give one item a tinted \"featured\" fill; the Contact card is the only one.",
+      "Don't put `#ffe45b` text on the light canvas, or use yellow for \"running\" status; that is `live` green.",
+      "Don't wrap content in shadowed cards, or use the hairline token as a control border.",
+      "Don't hardcode hex values or Tailwind's stock palette in components (dialog scrims excepted)."
+    ]
+  }
+}
